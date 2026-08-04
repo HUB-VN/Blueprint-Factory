@@ -1,0 +1,59 @@
+# FlowX CRM — Business Requirements
+schema: flowx/requirements@1
+requirements:
+  - id: BR-01
+    statement: Một hành trình, mọi kênh — lead từ 9 nguồn đi qua cùng một quy trình qualify.
+    rationale: Quy trình riêng theo kênh tạo dữ liệu phân mảnh và trải nghiệm không nhất quán.
+    acceptance_criteria:
+      - Thêm một trigger mới không yêu cầu sửa bất kỳ phase nào
+      - Lead từ mọi nguồn xuất hiện trong cùng một pipeline view
+    applies_to: [PH-1]
+
+  - id: BR-02
+    statement: Không lead nào bị bỏ rơi — lead chưa đạt luôn nằm trong vòng nurture có re-score định kỳ.
+    rationale: Lead "chưa mua" khác lead "không bao giờ mua"; loại sớm là đốt chi phí acquisition.
+    acceptance_criteria:
+      - Lead fail G-1 tự động vào nurture campaign
+      - Re-score chạy theo lịch (R-4) và khi có tương tác mới
+      - Lead chỉ rời hệ thống khi opt-out hoặc chạm P-07
+    applies_to: [PH-1, PH-2]
+
+  - id: BR-03
+    statement: Mọi tương tác được ghi vết tự động — Customer 360 không có khoảng trống.
+    rationale: Track Interaction thủ công luôn bị bỏ sót; O-CUSTOMER360 chỉ đáng tin khi tự động.
+    acceptance_criteria:
+      - Call / email / meeting / chat tự sinh activity record không cần thao tác tay
+      - Activity gắn đúng contact + account + deal đang mở
+    applies_to: [PH-2, PH-3, PH-4, PH-5]
+
+  - id: BR-04
+    statement: Phê duyệt theo ngưỡng cấu hình được, không hard-code.
+    rationale: Ngưỡng chiết khấu / hợp đồng thay đổi theo thời kỳ kinh doanh — đổi luật không được đổi code.
+    acceptance_criteria:
+      - Đổi ngưỡng trong P-08 có hiệu lực không cần deploy
+      - Flow không chứa bất kỳ con số ngưỡng nào
+    applies_to: [PH-3, PH-5]
+
+  - id: BR-05
+    statement: Thiếu hàng không được im lặng — nhánh Procurement phải kèm thông báo chủ động cho khách.
+    rationale: Khách chấp nhận chờ nếu được báo; khách rời bỏ khi phải tự hỏi.
+    acceptance_criteria:
+      - G-4 on_no kích hoạt notification (CC-B) với thời gian chờ dự kiến
+      - Cập nhật tiếp khi ETA thay đổi
+    applies_to: [PH-4]
+
+  - id: BR-06
+    statement: Xử lý vấn đề trước, bán thêm sau — upsell chỉ chạy khi không có ticket mở.
+    rationale: Bán thêm cho khách đang bực là cách nhanh nhất mất hợp đồng gốc.
+    acceptance_criteria:
+      - PH5-S3 bị chặn khi tồn tại ticket open trong O-SUPPORT
+      - AI recommendation (T-9) lọc khách có ticket mở khỏi danh sách upsell
+    applies_to: [PH-5]
+
+  - id: BR-07
+    statement: GDPR mặc định — consent, right-to-erasure, dữ liệu tối thiểu, áp cho mọi giai đoạn.
+    rationale: Tuân thủ gắn vào kiến trúc rẻ hơn nhiều lần so với retrofit.
+    acceptance_criteria:
+      - Consent thu tại điểm capture (PH1-S1) và lưu ở SVC-CONTACT
+      - Yêu cầu xóa thực thi được xuyên mọi service trong SLA định trước
+    applies_to: [PH-1, PH-2, PH-3, PH-4, PH-5]

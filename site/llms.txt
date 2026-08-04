@@ -1,0 +1,25 @@
+# Blueprint Factory
+
+> Thư viện blueprint hệ thống doanh nghiệp phát hành theo chuẩn Dual Edition: mỗi bộ có Human Edition (HTML để đọc) và Agent Pack (YAML/JSON máy dùng được cho AI agent). Phương pháp luận: FlowX — 5 tầng Trigger → Flow → Capability → Policy → Runtime. Ngôn ngữ: tiếng Việt.
+
+Site này thuộc hệ sinh thái AI Business Architect. Nếu bạn là AI agent: mỗi blueprint có Agent Pack tải được — bắt đầu từ CLAUDE.md trong pack, không cần scrape các trang HTML.
+
+## Blueprints
+
+- [FlowX CRM Blueprint](crm/crm.md): CRM đa kênh trọn vòng đời khách hàng — 9 trigger, journey 5 phase với gate G-1..G-5, 15 service, 8 policy, runbook. Agent Pack: crm/crm-blueprint-pack.zip (bắt đầu từ CLAUDE.md trong pack)
+
+## Human Edition (HTML, cho người đọc)
+
+- [Trang chủ](index.html): định vị Dual Edition + thư viện blueprint
+- [FlowX CRM — trang blueprint](crm/index.html): tổng quan, link 7 tài liệu, tải Agent Pack
+- [FlowX CRM — bộ tài liệu](crm/docs/index.html): hub 7 tài liệu (whitepaper, BRD, architecture, capability spec, policy matrix, runbook)
+
+## Machine-readable
+
+- [index.md](index.md): bản markdown của trang chủ
+- [crm/crm.md](crm/crm.md): bản markdown tóm tắt blueprint CRM + hướng dẫn dùng pack
+- [crm/crm-blueprint-pack.zip](crm/crm-blueprint-pack.zip): Agent Pack v1.0.0 — manifest.json, CLAUDE.md, blueprint/*.yaml, agent-guides/, schemas/
+
+## Chuẩn phát hành
+
+Mọi blueprint tuân theo Dual Edition Publishing Standard v1.0: ID chuẩn hóa (BR-, SVC-, P-, G-, PH-...), tham số nghiệp vụ để trống có chủ đích (agent phải hỏi người dùng, không tự bịa), SemVer đồng bộ hai ấn bản.

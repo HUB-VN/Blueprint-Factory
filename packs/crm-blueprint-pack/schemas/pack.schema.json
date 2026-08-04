@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/dual-edition/pack.schema.json",
+  "title": "Dual Edition Agent Pack Manifest",
+  "type": "object",
+  "required": ["pack", "title", "version", "schema_version", "language", "entry_point", "files"],
+  "properties": {
+    "pack": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "title": { "type": "string" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "schema_version": { "type": "integer", "minimum": 1 },
+    "language": { "type": "string" },
+    "license": { "type": "string" },
+    "publisher": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "site": { "type": "string" },
+        "edition_human": { "type": "string" }
+      }
+    },
+    "entry_point": { "type": "string" },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "role"],
+        "properties": {
+          "path": { "type": "string" },
+          "role": { "type": "string", "enum": ["entry", "readme", "philosophy", "flow", "requirements", "services", "policies", "architecture", "runbook", "agent-guide", "schema"] },
+          "sha256": { "type": "string" }
+        }
+      }
+    },
+    "id_index": { "type": "object", "additionalProperties": { "type": "integer" } }
+  }
+}

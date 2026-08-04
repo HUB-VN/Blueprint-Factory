@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Runbook — Vận hành Runtime · FlowX CRM Docs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Surfaces */
+  --surface-base: #FAFAFA;
+  --surface-raised: #FFFFFF;
+  --surface-deep: #1A1A1A;
+  --surface-edge: #F4F4F4;
+  /* Ink */
+  --ink: #0A0A0A;
+  --ink-soft: #404040;
+  --ink-muted: #8A8A8A;
+  /* Accent */
+  --accent: #0066FF;
+  --accent-deep: #0049BD;
+  --accent-soft: rgba(0, 102, 255, 0.08);
+  /* Support */
+  --support: #00A663;
+  --support-soft: rgba(0, 166, 99, 0.08);
+  --warn: #FF5C2A;
+  --warn-soft: rgba(255, 92, 42, 0.08);
+  /* Lines */
+  --line: #E5E5E5;
+  --line-strong: #0A0A0A;
+  /* Type */
+  --font-display: 'Inter', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  /* Spacing */
+  --space-3: 16px; --space-4: 24px; --space-5: 40px; --space-6: 64px; --space-7: 80px;
+  --col-main: 920px;
+  --col-full: 1400px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--surface-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Layout ===== */
+.layout { display: grid; grid-template-columns: 280px 1fr; max-width: var(--col-full); margin: 0 auto; position: relative; }
+.sidebar { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 40px 24px 40px 36px; border-right: 1px solid var(--line); background: var(--surface-base); }
+.main { padding: 56px 72px 120px 72px; max-width: var(--col-main); min-width: 0; }
+@media (max-width: 1024px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: relative; height: auto; border-right: none; border-bottom: 1px solid var(--line); padding: 24px; }
+  .main { padding: 40px 24px 80px; }
+}
+
+/* ===== Sidebar brand + nav ===== */
+.brand { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.brand-mark { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+.brand-title { font-family: var(--font-display); font-weight: 700; font-size: 20px; line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); }
+.brand-title a { color: inherit; text-decoration: none; }
+.brand-edition { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); margin-top: 8px; letter-spacing: 0.05em; }
+
+.toc-section { margin-bottom: 22px; }
+.toc-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 8px; }
+.toc-list { list-style: none; padding: 0; }
+.toc-list li { margin-bottom: 2px; }
+.toc-list a { display: flex; align-items: baseline; gap: 10px; padding: 6px 8px; color: var(--ink-soft); text-decoration: none; font-size: 13.5px; border-radius: 4px; transition: all 0.15s ease; line-height: 1.4; }
+.toc-list a:hover { background: var(--surface-edge); color: var(--accent); }
+.toc-list a.active { background: var(--ink); color: #fff; }
+.toc-num { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); flex-shrink: 0; min-width: 22px; }
+.toc-list a.active .toc-num { color: rgba(255,255,255,0.6); }
+
+/* ===== Breadcrumb ===== */
+.breadcrumb { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; color: var(--ink-muted); margin-bottom: 36px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.breadcrumb a { color: var(--ink-soft); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.bc-sep { opacity: 0.45; }
+.bc-current { color: var(--ink); }
+
+/* ===== Hero ===== */
+.hero { margin-bottom: 64px; padding-bottom: 48px; border-bottom: 2px solid var(--ink); position: relative; }
+.hero-meta { display: flex; gap: 20px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 24px; flex-wrap: wrap; }
+.hero-meta span { display: flex; align-items: center; gap: 8px; }
+.hero-meta span::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+.hero-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(36px, 5vw, 60px); line-height: 1.02; letter-spacing: -0.035em; color: var(--ink); margin-bottom: 20px; }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-sub { font-size: 20px; font-weight: 400; line-height: 1.45; color: var(--ink-soft); max-width: 640px; margin-bottom: 28px; }
+.hero-tagline { font-family: var(--font-mono); font-size: 12px; color: var(--ink); display: inline-block; padding: 8px 14px; border: 1px solid var(--ink); letter-spacing: 0.04em; border-radius: 4px; }
+.hero-tagline span { color: var(--accent); font-weight: 600; }
+
+/* ===== Typography ===== */
+h2 { font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: -0.03em; line-height: 1.15; margin: 64px 0 16px; color: var(--ink); }
+h3 { font-family: var(--font-display); font-weight: 600; font-size: 20px; letter-spacing: -0.015em; margin: 36px 0 10px; color: var(--ink); }
+h2 .sec-num { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--accent); display: block; letter-spacing: 0.12em; margin-bottom: 6px; }
+p { margin-bottom: 16px; color: var(--ink-soft); font-size: 16px; }
+p.lede { font-size: 19px; line-height: 1.55; color: var(--ink-soft); }
+strong { color: var(--ink); font-weight: 600; }
+ul.plain { margin: 0 0 16px 22px; color: var(--ink-soft); }
+ul.plain li { margin-bottom: 6px; }
+a { color: var(--accent); }
+
+hr { border: none; height: 1px; background: var(--line); margin: 56px 0; position: relative; }
+hr::after { content: '· · ·'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--surface-base); padding: 0 12px; color: var(--ink-muted); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.3em; }
+
+/* ===== Pill label ===== */
+.pill { display: inline-block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 4px 10px; border-radius: 100px; margin-bottom: 12px; }
+.pill.green { color: var(--support); background: var(--support-soft); }
+.pill.warn { color: var(--warn); background: var(--warn-soft); }
+
+/* ===== Layer tiles ===== */
+.layers { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 28px 0; border-radius: 8px; overflow: hidden; }
+.layer-tile { background: var(--surface-raised); padding: 22px 18px; position: relative; }
+.layer-tile-num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 6px; text-transform: uppercase; }
+.layer-tile-name { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--ink); }
+.layer-tile-q { font-size: 13px; color: var(--ink-soft); margin-bottom: 10px; line-height: 1.4; }
+.layer-tile-stages { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-muted); line-height: 1.8; }
+.layer-tile-stages span { color: var(--ink); font-weight: 500; }
+
+/* ===== Principles grid ===== */
+.principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin: 28px 0; }
+.principle { padding: 22px 20px; background: var(--surface-raised); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 6px; }
+.principle-num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px; }
+.principle-title { font-family: var(--font-display); font-weight: 600; font-size: 16.5px; line-height: 1.25; margin-bottom: 8px; color: var(--ink); }
+.principle-body { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
+
+/* ===== Stage card ===== */
+.stage { margin: 40px 0; padding: 32px 32px 28px; background: var(--surface-raised); border: 1px solid var(--line); border-radius: 8px; position: relative; }
+.stage-header { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.stage-seal { flex-shrink: 0; width: 52px; height: 52px; border: 2px solid var(--ink); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 21px; color: var(--ink); background: var(--surface-base); }
+.stage-title-block { flex: 1; min-width: 0; }
+.stage-id { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 3px; }
+.stage-name { font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 1.12; letter-spacing: -0.02em; color: var(--ink); }
+.stage-purpose { font-size: 16.5px; color: var(--ink-soft); margin-bottom: 20px; line-height: 1.5; }
+
+/* ===== Flow steps (vertical) ===== */
+.flow-steps { margin: 18px 0; border-left: 2px solid var(--line); padding-left: 0; list-style: none; }
+.flow-steps li { position: relative; padding: 8px 0 8px 26px; font-size: 14.5px; color: var(--ink-soft); }
+.flow-steps li::before { content: ''; position: absolute; left: -6px; top: 16px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface-base); border: 2px solid var(--accent); }
+.flow-steps li strong { color: var(--ink); }
+.flow-steps li.branch::before { background: var(--support); border-color: var(--support); border-radius: 2px; transform: rotate(45deg); }
+.flow-steps li .mono { font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); }
+
+/* ===== Data list ===== */
+.data-list { margin: 20px 0 28px; border-top: 1px solid var(--line); }
+.data-row { display: grid; grid-template-columns: 210px 1fr; padding: 13px 0; border-bottom: 1px solid var(--line); gap: 24px; }
+.data-key { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); padding-top: 3px; }
+.data-key b { color: var(--accent); font-weight: 600; }
+.data-value { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
+.data-value strong { color: var(--ink); }
+@media (max-width: 768px) { .data-row { grid-template-columns: 1fr; gap: 4px; } }
+
+/* ===== Callout ===== */
+.callout { margin: 26px 0; padding: 20px 24px; border-left: 3px solid var(--support); background: var(--support-soft); border-radius: 0 6px 6px 0; }
+.callout-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--support); margin-bottom: 8px; }
+.callout-body { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
+.callout-body strong { color: var(--ink); }
+
+/* ===== Anti-pattern ===== */
+.antipattern { margin: 20px 0; padding: 16px 20px; background: var(--warn-soft); border-left: 3px solid var(--warn); font-size: 14px; line-height: 1.55; border-radius: 0 6px 6px 0; }
+.antipattern-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warn); margin-bottom: 4px; font-weight: 600; }
+.antipattern-text { color: var(--ink-soft); }
+
+/* ===== Gate ===== */
+.gate { margin: 20px 0; padding: 16px 22px; background: var(--ink); color: #fff; display: flex; align-items: center; gap: 16px; border-radius: 6px; }
+.gate-icon { font-family: var(--font-mono); font-size: 20px; color: var(--support); line-height: 1; }
+.gate-content { flex: 1; }
+.gate-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--support); margin-bottom: 3px; text-transform: uppercase; }
+.gate-q { font-size: 15px; line-height: 1.4; font-weight: 500; }
+.gate-branches { font-family: var(--font-mono); font-size: 11.5px; color: rgba(255,255,255,0.65); margin-top: 6px; }
+.gate-branches b { color: var(--support); font-weight: 600; }
+
+/* ===== Template block ===== */
+.template { margin: 20px 0; background: var(--surface-deep); color: #D8D8D8; padding: 22px 26px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.75; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; }
+.template-label { font-size: 10px; letter-spacing: 0.18em; color: var(--support); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.14); text-transform: uppercase; }
+.template .key { color: #6FB2FF; }
+.template .comment { color: #7A7A7A; font-style: italic; }
+
+/* ===== Rhythm rows ===== */
+.rhythm { margin: 26px 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.rhythm-row { display: grid; grid-template-columns: 160px 1fr; border-bottom: 1px solid var(--line); background: var(--surface-raised); }
+.rhythm-row:last-child { border-bottom: none; }
+.rhythm-when { padding: 15px 18px; background: var(--surface-edge); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); border-right: 1px solid var(--line); display: flex; align-items: center; }
+.rhythm-what { padding: 15px 20px; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+.rhythm-what strong { color: var(--ink); }
+@media (max-width: 768px) { .rhythm-row { grid-template-columns: 1fr; } .rhythm-when { border-right: none; border-bottom: 1px solid var(--line); } }
+
+/* ===== Crosscutting cards ===== */
+.cross-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0; }
+.cross { padding: 22px 22px; background: var(--surface-raised); border: 1px solid var(--line); border-top: 3px solid var(--ink); border-radius: 6px; }
+.cross-letter { font-family: var(--font-display); font-weight: 700; font-size: 30px; line-height: 1; color: var(--accent); margin-bottom: 8px; }
+.cross-name { font-family: var(--font-display); font-weight: 600; font-size: 16.5px; margin-bottom: 10px; color: var(--ink); }
+.cross-body { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
+.cross-body ul { margin-left: 18px; }
+.cross-body li { margin-bottom: 4px; }
+@media (max-width: 768px) { .cross-grid { grid-template-columns: 1fr; } }
+
+/* ===== Pull quote ===== */
+.pullquote { margin: 40px 0; padding: 18px 0 18px 28px; border-left: 4px solid var(--accent); font-size: 23px; line-height: 1.4; color: var(--ink); font-weight: 500; letter-spacing: -0.015em; }
+.pullquote cite { display: block; margin-top: 14px; font-family: var(--font-mono); font-size: 11.5px; font-style: normal; letter-spacing: 0.1em; color: var(--ink-muted); font-weight: 400; }
+
+/* ===== Doc cards (hub) ===== */
+.doc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+.doc-card { display: block; padding: 26px 24px; background: var(--surface-raised); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; transition: all 0.18s ease; position: relative; }
+.doc-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+.doc-card-num { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+.doc-card-title { font-family: var(--font-display); font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 8px; line-height: 1.2; }
+.doc-card-desc { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 12px; }
+.doc-card-aud { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-muted); text-transform: uppercase; }
+@media (max-width: 768px) { .doc-grid { grid-template-columns: 1fr; } }
+
+/* ===== Matrix table ===== */
+.matrix-wrap { overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+table.matrix { border-collapse: collapse; width: 100%; font-size: 13px; background: var(--surface-raised); }
+table.matrix th { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); text-align: left; padding: 12px 14px; border-bottom: 2px solid var(--ink); background: var(--surface-edge); white-space: nowrap; }
+table.matrix td { padding: 11px 14px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; line-height: 1.5; }
+table.matrix tr:last-child td { border-bottom: none; }
+table.matrix td.center { text-align: center; }
+table.matrix td strong { color: var(--ink); }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+.dot.optional { background: var(--line); border: 1.5px solid var(--ink-muted); width: 8px; height: 8px; }
+
+/* ===== Chapter nav ===== */
+.chapter-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 72px 0 24px; }
+.chapter-nav a { padding: 20px 24px; background: var(--surface-raised); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s ease; }
+.chapter-nav a:hover { border-color: var(--accent); }
+.chapter-nav .spacer { visibility: hidden; }
+.cn-next { text-align: right; }
+.cn-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; }
+.cn-title { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--ink); line-height: 1.3; }
+@media (max-width: 768px) { .chapter-nav { grid-template-columns: 1fr; } .cn-next { text-align: left; } }
+
+/* ===== Footer ===== */
+.doc-footer { margin-top: 64px; padding-top: 24px; border-top: 2px solid var(--ink); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.doc-footer .f-left { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; color: var(--ink-muted); text-transform: uppercase; }
+.doc-footer .f-right { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-muted); }
+.doc-footer .f-right b { color: var(--accent); font-weight: 600; }
+
+/* ===== Print ===== */
+@media print {
+  .sidebar, .breadcrumb, .chapter-nav { display: none !important; }
+  .layout { grid-template-columns: 1fr !important; }
+  .main { padding: 0 !important; max-width: 100% !important; }
+  body { background: white !important; color: black !important; font-size: 11pt; }
+  .stage, .template, .gate, .principle, .cross, .matrix-wrap { page-break-inside: avoid; }
+  h1, h2, h3 { page-break-after: avoid; }
+  .gate { background: #222 !important; -webkit-print-color-adjust: exact; }
+  .template { background: #222 !important; -webkit-print-color-adjust: exact; }
+  a { color: inherit; text-decoration: underline; }
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <a href="../index.html" style="display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.08em;color:var(--ink-muted);text-decoration:none;margin-bottom:14px;">← Blueprint Factory / FlowX CRM</a>
+  <div class="brand">
+    <div class="brand-mark">FlowX · CRM Sample</div>
+    <div class="brand-title"><a href="index.html">Bộ tài liệu<br/>FlowX CRM</a></div>
+    <div class="brand-edition">v1.0 · 08/2026 · Tiếng Việt</div>
+  </div>
+  <div class="toc-section">
+    <div class="toc-label">Bộ tài liệu</div>
+    <ul class="toc-list"><li><a href="index.html"><span class="toc-num">00</span><span>Trang chủ</span></a></li>
+<li><a href="whitepaper.html"><span class="toc-num">01</span><span>Whitepaper · FlowX</span></a></li>
+<li><a href="brd.html"><span class="toc-num">02</span><span>Đặc tả nghiệp vụ (BRD)</span></a></li>
+<li><a href="architecture.html"><span class="toc-num">03</span><span>Kiến trúc giải pháp</span></a></li>
+<li><a href="capabilities.html"><span class="toc-num">04</span><span>Capability Spec</span></a></li>
+<li><a href="policies.html"><span class="toc-num">05</span><span>Policy Matrix</span></a></li>
+<li><a href="runbook.html" class="active"><span class="toc-num">06</span><span>Runbook vận hành</span></a></li></ul>
+  </div>
+  <div class="toc-section"><div class="toc-label">Trong trang này</div><ul class="toc-list toc-page"><li><a href="#health-model"><span class="toc-num">§1</span><span>Mô hình sức khỏe</span></a></li>
+<li><a href="#runtime-ops"><span class="toc-num">§2</span><span>Vận hành runtime</span></a></li>
+<li><a href="#rhythm"><span class="toc-num">§3</span><span>Nhịp vận hành</span></a></li>
+<li><a href="#incidents"><span class="toc-num">§4</span><span>Kịch bản sự cố</span></a></li>
+<li><a href="#escalation"><span class="toc-num">§5</span><span>Mẫu báo cáo</span></a></li>
+</ul></div>
+</aside>
+<main class="main">
+<nav class="breadcrumb">
+  <a href="index.html">Trang chủ</a><span class="bc-sep">/</span><span class="bc-current">06 · Runbook</span>
+</nav>
+
+<header class="hero">
+  <div class="hero-meta">
+    <span>Operations Runbook</span>
+    <span>DevOps · SRE</span>
+    <span>Tài liệu 06</span>
+  </div>
+  <h1 class="hero-title">Runbook<br/><em>vận hành</em></h1>
+  <p class="hero-sub">Tám thành phần runtime, nhịp theo dõi hằng ngày, tín hiệu cảnh báo, và kịch bản xử lý cho các sự cố thường gặp nhất.</p>
+  <div class="hero-tagline">MONITOR <span>·</span> ALERT <span>·</span> RESPOND <span>·</span> LEARN</div>
+</header>
+
+<section id="health-model">
+  <h2><span class="sec-num">§ 1</span>Mô hình sức khỏe hệ thống</h2>
+  <p class="lede">Hệ thống khỏe khi <strong>bốn dòng chảy</strong> đều thông: sự kiện vào (trigger → bus), quy trình chạy (workflow instance tiến triển), dữ liệu ra (integration sync thành công), và người dùng thao tác được (API latency trong SLO).</p>
+
+  <div class="principles">
+    <div class="principle"><div class="principle-num">Dòng 1</div><div class="principle-title">Event ingestion</div><div class="principle-body">Event vào bus / phút theo từng trigger. Tụt bất thường = kênh chết; tăng đột biến = kiểm tra scaling và rate limit.</div></div>
+    <div class="principle"><div class="principle-num">Dòng 2</div><div class="principle-title">Workflow progress</div><div class="principle-body">Instance đang chạy, chờ gate, lỗi. Instance kẹt quá ngưỡng thời gian ở một bước là tín hiệu sớm nhất của sự cố nghiệp vụ.</div></div>
+    <div class="principle"><div class="principle-num">Dòng 3</div><div class="principle-title">Integration sync</div><div class="principle-body">Tỷ lệ thành công sync ERP, Payment, Email/SMS. Retry queue dài lên = hệ thống ngoài đang chậm hoặc từ chối.</div></div>
+    <div class="principle"><div class="principle-num">Dòng 4</div><div class="principle-title">API experience</div><div class="principle-body">Latency p95, error rate theo service. Đây là dòng người dùng cảm nhận trực tiếp.</div></div>
+  </div>
+</section>
+
+<section id="runtime-ops">
+  <h2><span class="sec-num">§ 2</span>Vận hành 8 thành phần runtime</h2>
+  <div class="matrix-wrap"><table class="matrix">
+    <tr><th>Thành phần</th><th>Theo dõi gì</th><th>Cảnh báo khi</th><th>Phản ứng đầu tiên</th></tr>
+    <tr><td><strong>Workflow Engine</strong></td><td>Instance active / stuck / failed</td><td>Instance kẹt một bước &gt; ngưỡng; failed tăng</td><td>Xem instance detail → xác định activity lỗi → retry hoặc compensate</td></tr>
+    <tr><td><strong>Rule Engine</strong></td><td>Thời gian đánh giá rule, tỷ lệ lỗi rule</td><td>Rule mới deploy làm gate từ chối bất thường</td><td>So sánh tỷ lệ pass gate trước/sau thay đổi rule; rollback rule nếu lệch</td></tr>
+    <tr><td><strong>Event Bus</strong></td><td>Consumer lag, DLQ depth</td><td>Lag tăng liên tục; DLQ &gt; 0</td><td>Xác định consumer chậm → scale consumer; xử lý từng message DLQ, không purge</td></tr>
+    <tr><td><strong>Scheduler</strong></td><td>Job đúng hạn, job miss</td><td>Job miss hoặc chạy trễ &gt; ngưỡng</td><td>Kiểm tra job history → chạy bù thủ công nếu nghiệp vụ cho phép</td></tr>
+    <tr><td><strong>Monitoring</strong></td><td>Chính nó — alert pipeline sống</td><td>Heartbeat alert không đến đúng lịch</td><td>Kiểm tra alerting stack trước khi tin "không có alert = không có sự cố"</td></tr>
+    <tr><td><strong>Logging</strong></td><td>Ingest rate, độ trễ index</td><td>Log ngừng vào từ một service</td><td>Service vẫn sống? Nếu sống mà không log — sự cố logging agent</td></tr>
+    <tr><td><strong>Tracing</strong></td><td>Trace sampling, span lỗi</td><td>Latency p95 một hop tăng bất thường</td><td>Mở trace chậm nhất → tìm hop nghẽn → đối chiếu deploy gần nhất</td></tr>
+    <tr><td><strong>Scaling</strong></td><td>Replica count, HPA event</td><td>Scale max mà vẫn quá tải; flapping</td><td>Nâng trần tạm thời + tìm nguyên nhân gốc (query chậm? N+1 call?)</td></tr>
+  </table></div>
+</section>
+
+<hr/>
+
+<section id="rhythm">
+  <h2><span class="sec-num">§ 3</span>Nhịp vận hành</h2>
+  <div class="rhythm">
+    <div class="rhythm-row"><div class="rhythm-when">Mỗi sáng</div><div class="rhythm-what"><strong>Đọc dashboard 4 dòng chảy.</strong> Kiểm tra DLQ, instance kẹt qua đêm, job scheduler miss, và alert đã bắn trong đêm.</div></div>
+    <div class="rhythm-row"><div class="rhythm-when">Mỗi tuần</div><div class="rhythm-what"><strong>Review xu hướng.</strong> Consumer lag trung bình, tỷ lệ pass các gate G1–G5, top 5 API chậm nhất, dung lượng storage theo retention.</div></div>
+    <div class="rhythm-row"><div class="rhythm-when">Mỗi tháng</div><div class="rhythm-what"><strong>Diễn tập &amp; dọn dẹp.</strong> Test khôi phục backup, xoay credentials, chạy thử kịch bản sự cố SC-01, rà soát rule/policy không còn dùng.</div></div>
+    <div class="rhythm-row"><div class="rhythm-when">Mỗi release</div><div class="rhythm-what"><strong>Qua CI/CD, không có ngoại lệ.</strong> Canary trước, theo dõi error rate 30 phút, rollback tự động nếu vượt ngưỡng.</div></div>
+  </div>
+</section>
+
+<section id="incidents">
+  <h2><span class="sec-num">§ 4</span>Kịch bản sự cố thường gặp</h2>
+
+  <h3>SC-01 · Lead ngừng vào từ một kênh</h3>
+  <ol class="flow-steps">
+    <li><strong>Phát hiện:</strong> event ingestion của trigger đó tụt về ~0 (Dòng 1).</li>
+    <li><strong>Khoanh vùng:</strong> adapter của kênh còn sống? Credential/webhook của nền tảng ngoài còn hạn?</li>
+    <li><strong>Xử lý:</strong> khôi phục adapter / gia hạn token; kiểm tra nền tảng ngoài có đổi API.</li>
+    <li><strong>Bù dữ liệu:</strong> backfill lead trong khoảng mất kết nối nếu nguồn cho phép truy vấn lại.</li>
+  </ol>
+
+  <h3>SC-02 · Consumer lag tăng không hồi</h3>
+  <ol class="flow-steps">
+    <li><strong>Phát hiện:</strong> lag một consumer group tăng tuyến tính (Event Bus).</li>
+    <li><strong>Khoanh vùng:</strong> consumer chậm hay message độc? Xem DLQ và log lỗi lặp.</li>
+    <li><strong>Xử lý:</strong> message độc → cách ly vào DLQ, sửa dữ liệu, replay; chậm thực sự → scale consumer.</li>
+    <li><strong>Không bao giờ</strong> purge queue để "cho hết lag" — mất event là mất nghiệp vụ.</li>
+  </ol>
+
+  <h3>SC-03 · ERP sync thất bại hàng loạt (P4 Delivery)</h3>
+  <ol class="flow-steps">
+    <li><strong>Phát hiện:</strong> tỷ lệ thành công sync ERP tụt (Dòng 3); order kẹt ở Create Order.</li>
+    <li><strong>Khoanh vùng:</strong> ERP down, mạng, hay schema đổi? Đọc response lỗi trong retry queue.</li>
+    <li><strong>Xử lý:</strong> ERP down → để retry with backoff làm việc, thông báo đội Delivery về độ trễ; schema đổi → sửa mapping, replay queue.</li>
+    <li><strong>Nghiệp vụ:</strong> kích hoạt Notifications báo khách về trễ giao nếu vượt SLA (BR-05).</li>
+  </ol>
+
+  <h3>SC-04 · Phê duyệt tắc nghẽn</h3>
+  <ol class="flow-steps">
+    <li><strong>Phát hiện:</strong> workflow instance dồn ứ tại approval gate (Dòng 2).</li>
+    <li><strong>Khoanh vùng:</strong> người duyệt vắng, notification không đến, hay ngưỡng mới bắt quá nhiều deal?</li>
+    <li><strong>Xử lý:</strong> escalation sang người duyệt dự phòng theo Approval Policy; nếu do đổi ngưỡng — báo chủ policy xem lại cấu hình.</li>
+  </ol>
+
+  <div class="antipattern">
+    <div class="antipattern-label">Anti-pattern vận hành</div>
+    <div class="antipattern-text">Sửa dữ liệu trực tiếp trong database của service để "thông" một instance kẹt. Mọi can thiệp phải đi qua API hoặc cơ chế compensate của Workflow Engine — nếu không, audit log và trạng thái workflow sẽ vĩnh viễn lệch thực tế.</div>
+  </div>
+</section>
+
+<section id="escalation">
+  <h2><span class="sec-num">§ 5</span>Mẫu báo cáo sự cố</h2>
+  <div class="template">
+    <div class="template-label">incident-report.md</div><span class="key">## Sự cố:</span> [tên ngắn gọn]
+<span class="key">## Mức độ:</span> SEV-[1/2/3]  ·  <span class="key">Bắt đầu:</span> [time]  ·  <span class="key">Kết thúc:</span> [time]
+<span class="key">## Ảnh hưởng:</span> [dòng chảy nào, bao nhiêu khách hàng / instance]
+<span class="key">## Dòng thời gian:</span>
+- [time] Phát hiện qua [alert / báo cáo tay]
+- [time] Khoanh vùng: [nguyên nhân nghi ngờ]
+- [time] Xử lý: [hành động]
+<span class="key">## Nguyên nhân gốc:</span> [5-whys tóm tắt]
+<span class="key">## Hành động phòng ngừa:</span> [việc + người phụ trách + hạn]
+<span class="comment"># Lưu vào knowledge base của Support System — sự cố là tài sản học tập</span></div>
+</section>
+
+<nav class="chapter-nav">
+  <a href="policies.html" class="cn-prev">
+    <span class="cn-label">← Trước</span>
+    <span class="cn-title">Policy Matrix</span>
+  </a>
+  <a href="index.html" class="cn-next">
+    <span class="cn-label">Về trang chủ →</span>
+    <span class="cn-title">Bộ tài liệu FlowX CRM</span>
+  </a>
+</nav>
+
+<footer class="doc-footer">
+  <div class="f-left">Tài liệu 06 · Runbook</div>
+  <div class="f-right">v1.0 · <b>FlowX</b> · 08/2026</div>
+</footer>
+
+</main>
+</div>
+<script>
+(function() {
+  var links = document.querySelectorAll('.toc-page a');
+  var sections = [];
+  links.forEach(function(link) {
+    var href = link.getAttribute('href');
+    if (!href || href[0] !== '#') return;
+    var el = document.getElementById(href.slice(1));
+    if (el) sections.push({ el: el, link: link });
+  });
+  if (!sections.length) return;
+  function onScroll() {
+    var y = window.scrollY + 120;
+    var current = null;
+    sections.forEach(function(s) { if (s.el.offsetTop <= y) current = s; });
+    links.forEach(function(l) { l.classList.remove('active'); });
+    if (current) current.link.classList.add('active');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>

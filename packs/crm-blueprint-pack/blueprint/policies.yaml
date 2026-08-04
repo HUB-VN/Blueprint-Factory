@@ -1,0 +1,90 @@
+# FlowX CRM — Policies (8) + Enforcement Points (4)
+# Nguyên tắc: viết một lần, cưỡng chế mọi nơi. parameters có value: null = agent PHẢI hỏi người dùng.
+schema: flowx/policies@1
+
+enforcement_points:
+  - { id: E-1, name: "API Gateway", enforces: [P-03, P-04], note: "Request không hợp lệ chết tại cửa" }
+  - { id: E-2, name: "Service middleware", enforces: [P-01, P-02], note: "Thư viện chung, không service nào tự viết riêng" }
+  - { id: E-3, name: "Workflow gateway", enforces: [P-08], note: "Gate phê duyệt là node của flow, R-2 đánh giá ngưỡng" }
+  - { id: E-4, name: "Data layer", enforces: [P-05, P-06, P-07], note: "Cưỡng chế ở storage/pipeline — bug service không phá được" }
+
+policies:
+  - id: P-01
+    name: Authorization
+    rule: RBAC — quyền theo vai trò, không theo cá nhân. Sales thấy lead/deal của mình hoặc team; manager thấy toàn pipeline; admin cấu hình.
+    parameters:
+      roles: { value: [sales, manager, admin], note: "Mở rộng theo tổ chức thật" }
+      ownership_scope: { value: null, note: "HỎI — theo cá nhân, team, hay vùng?" }
+    enforced_at: [E-2]
+    applies_to_phases: [PH-1, PH-2, PH-3, PH-4, PH-5]
+    weight: { PH-2: primary, PH-3: primary }
+
+  - id: P-02
+    name: Validation
+    rule: Business rules tại cửa service — email đúng định dạng, deal phải có giá trị, order phải trỏ về deal thắng. Từ chối sớm.
+    parameters: {}
+    enforced_at: [E-2]
+    applies_to_phases: [PH-1, PH-3, PH-4]
+    weight: { PH-1: primary, PH-3: primary, PH-4: primary }
+
+  - id: P-03
+    name: Security
+    rule: Mọi người dùng và hệ thống đối tác phải xác thực; 2FA bắt buộc cho thao tác nhạy cảm và tài khoản đặc quyền.
+    parameters:
+      sensitive_actions: { value: [export_data, change_policy, bulk_delete], note: "Bổ sung theo thực tế" }
+    enforced_at: [E-1]
+    applies_to_phases: [PH-1, PH-2, PH-3, PH-4, PH-5]
+
+  - id: P-04
+    name: Rate Limit
+    rule: Giới hạn tần suất theo API key / user / IP — đậm nhất tại form công khai (PH-1).
+    parameters:
+      public_form_limit: { value: null, note: "HỎI — req/phút cho web form?" }
+      partner_api_limit: { value: null, note: "HỎI — quota cho T-7?" }
+    enforced_at: [E-1]
+    applies_to_phases: [PH-1, PH-4]
+    weight: { PH-1: primary }
+
+  - id: P-05
+    name: Data Privacy
+    rule: GDPR — chỉ xử lý dữ liệu cá nhân khi có consent; right to erasure; dữ liệu tối thiểu. (BR-07)
+    parameters:
+      erasure_sla_days: { value: null, note: "HỎI — SLA xóa dữ liệu theo yêu cầu?" }
+      legal_basis: { value: null, note: "HỎI — thị trường VN thì áp thêm Nghị định 13/2023?" }
+    enforced_at: [E-4]
+    applies_to_phases: [PH-1, PH-2, PH-3, PH-4, PH-5]
+    weight: { PH-1: primary, PH-2: primary, PH-5: primary }
+
+  - id: P-06
+    name: Audit
+    rule: Track & trace — mọi thay đổi trạng thái (ai, lúc nào, từ giá trị nào sang giá trị nào) vào audit log bất biến.
+    parameters: {}
+    enforced_at: [E-4]
+    applies_to_phases: [PH-1, PH-2, PH-3, PH-4, PH-5]
+    weight: { PH-3: primary, PH-4: primary }
+
+  - id: P-07
+    name: Retention
+    rule: Data lifecycle — mỗi loại dữ liệu có tuổi thọ; hết hạn thì ẩn danh hóa hoặc xóa theo lịch (R-4).
+    parameters:
+      cold_lead_months: { value: null, note: "HỎI — lead lạnh giữ bao lâu?" }
+      call_recording_months: { value: null, note: "HỎI — ghi âm giữ bao lâu?" }
+      log_retention_days: { value: 90, note: "Mặc định đề xuất, chỉnh theo compliance" }
+    enforced_at: [E-4]
+    applies_to_phases: [PH-1, PH-5]
+    weight: { PH-1: primary, PH-5: primary }
+
+  - id: P-08
+    name: Approval
+    rule: Threshold rules — ngưỡng định lượng kích hoạt phê duyệt; escalation sang người duyệt dự phòng khi quá hạn. (BR-04, CC-C)
+    parameters:
+      discount_threshold_pct: { value: null, note: "HỎI — chiết khấu vượt bao nhiêu % cần duyệt?" }
+      contract_value_threshold: { value: null, note: "HỎI — hợp đồng vượt giá trị nào cần duyệt?" }
+      approval_timeout_hours: { value: 24, note: "Mặc định đề xuất — quá hạn thì escalate" }
+    enforced_at: [E-3]
+    applies_to_phases: [PH-3, PH-4, PH-5]
+    weight: { PH-3: primary, PH-5: primary }
+
+testing_principle: >
+  Mỗi policy có bộ test độc lập với service: gọi vượt quyền, dữ liệu bẩn, vượt ngưỡng chiết khấu,
+  yêu cầu xóa GDPR — chứng minh hệ thống chặn đúng ở đúng enforcement point.

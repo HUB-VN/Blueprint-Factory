@@ -1,0 +1,117 @@
+# FlowX CRM — Customer Journey (tầng Flow)
+# Nguồn sự thật cho flow nghiệp vụ. Gate là decision table máy đọc được.
+schema: flowx/journey@1
+flow:
+  id: FLOW-CJ
+  name: Customer Journey
+  description: "Hành trình khách hàng duy nhất, mọi trigger đổ về — không có quy trình riêng theo kênh."
+
+triggers:
+  - { id: T-1, name: "Web / API", detail: "Web form, mobile app" }
+  - { id: T-2, name: "Email", detail: "Inbound email" }
+  - { id: T-3, name: "Phone Call", detail: "Inbound / Outbound" }
+  - { id: T-4, name: "Social Media", detail: "DM, comment, mention" }
+  - { id: T-5, name: "Live Chat", detail: "Website chat widget" }
+  - { id: T-6, name: "Campaign", detail: "Email campaign, ads" }
+  - { id: T-7, name: "Partner / System", detail: "Third-party system" }
+  - { id: T-8, name: "Scheduler", detail: "Reminder, follow-up (nội sinh)" }
+  - { id: T-9, name: "AI Agent", detail: "AI-based recommendation (nội sinh, khép vòng lặp với O-AIML)" }
+
+phases:
+  - id: PH-1
+    name: Lead Management
+    goal: Capture & qualify leads
+    entry: "Bất kỳ trigger T-1..T-9 tạo lead mới"
+    steps:
+      - { id: PH1-S1, name: "New Lead Captured", action: "Ghi nhận lead, khử trùng lặp theo email/phone", service: SVC-LEAD }
+      - { id: PH1-S2, name: "Enrich Lead", action: "Bổ sung data / company / social", service: SVC-LEAD }
+      - { id: PH1-S3, name: "Lead Scoring", action: "Chấm điểm theo fit + behavior, quy tắc trong Rule Engine", service: SVC-LEAD, runtime: R-2 }
+    gate:
+      id: G-1
+      question: "Qualified? — lead đạt ngưỡng chất lượng chuyển sales?"
+      evaluated_by: R-2
+      on_yes: { next: PH-2 }
+      on_no:
+        loop:
+          - { name: "Nurture Campaign", detail: "email + content", service: SVC-CAMPAIGN }
+          - { name: "Re-score Lead", service: SVC-LEAD, then: G-1 }
+        note: "Lead không bị loại — chỉ rời hệ thống khi opt-out hoặc chạm P-07 retention (BR-02)."
+
+  - id: PH-2
+    name: Engagement
+    goal: Nurture & build interest
+    steps:
+      - { id: PH2-S1, name: "Assign to Owner", action: "Auto-assignment theo vùng / ngành / tải", crosscutting: CC-A }
+      - { id: PH2-S2, name: "Engage", action: "Call / email / meeting", service: SVC-ACTIVITY }
+      - { id: PH2-S3, name: "Track Interaction", action: "Ghi tự động mọi tương tác — nguồn của O-CUSTOMER360", service: SVC-ACTIVITY, requirement: BR-03 }
+    gate:
+      id: G-2
+      question: "Interested? — nhu cầu đủ rõ để mở deal?"
+      evaluated_by: "owner + R-2"
+      on_yes: { next: PH-3 }
+      on_no:
+        loop:
+          - { name: "Nurture Campaign", service: SVC-CAMPAIGN, then: PH2-S2 }
+
+  - id: PH-3
+    name: Opportunity
+    goal: Create & manage deals
+    steps:
+      - { id: PH3-S1, name: "Create Opportunity", action: "Mở deal với giá trị dự kiến + xác suất thắng", service: SVC-OPP }
+      - { id: PH3-S2, name: "Define Needs & Solution", service: SVC-OPP }
+      - { id: PH3-S3, name: "Proposal / Quote", action: "Báo giá từ product + pricing; chiết khấu vượt ngưỡng qua P-08", services: [SVC-PRODUCT, SVC-PRICING, SVC-DOC] }
+      - { id: PH3-S4, name: "Negotiation", action: "Mọi phiên bản báo giá lưu vết (P-06)", service: SVC-OPP }
+    gate:
+      id: G-3
+      question: "Won? — deal chốt thành công?"
+      evaluated_by: owner
+      on_yes: { next: PH-4 }
+      on_no:
+        terminal: Closed Lost
+        rules:
+          - "Bắt buộc ghi lý do thua (giá / tính năng / thời điểm / đối thủ) — nuôi O-ANALYTICS và T-9"
+          - "Khách quay về nurture dài hạn (vòng lặp PH-1)"
+
+  - id: PH-4
+    name: Delivery
+    goal: Fulfill & onboard
+    steps:
+      - { id: PH4-S1, name: "Create Order", action: "Tạo đơn từ deal thắng, sync O-ERP", service: SVC-ORDER }
+      - { id: PH4-S2, name: "Check Inventory", service: SVC-INVENTORY }
+      - { id: PH4-G, gate_ref: G-4 }
+      - { id: PH4-S3, name: "Fulfillment", action: "Ship / deliver", service: SVC-ORDER }
+      - { id: PH4-S4, name: "Onboard Customer", action: "Setup + training; xong khi khách vận hành độc lập", service: SVC-TASK }
+    gate:
+      id: G-4
+      question: "In Stock? — hàng có sẵn?"
+      evaluated_by: SVC-INVENTORY
+      on_yes: { next: PH4-S3 }
+      on_no:
+        detour:
+          - { name: "Procurement", detail: "request / PO", service: SVC-INVENTORY, then: PH4-S3 }
+        rules:
+          - "Thông báo chủ động cho khách về thời gian chờ (BR-05, CC-B)"
+
+  - id: PH-5
+    name: Loyalty
+    goal: Retain & grow
+    steps:
+      - { id: PH5-S1, name: "Customer Success", action: "Check-in định kỳ theo lịch R-4", service: SVC-TASK }
+      - { id: PH5-S2, name: "Collect Feedback", service: SVC-ACTIVITY }
+      - { id: PH5-G, gate_ref: G-5 }
+      - { id: PH5-S3, name: "Upsell / Cross-sell", action: "Đề xuất từ T-9; chỉ chạy khi không có ticket mở (BR-06)", service: SVC-OPP }
+      - { id: PH5-S4, name: "Renewal / Loyalty", action: "Contract + reward; hợp đồng vượt ngưỡng qua P-08", service: SVC-OPP }
+    gate:
+      id: G-5
+      question: "Issue? — phản hồi có vấn đề cần xử lý?"
+      evaluated_by: "SVC-ACTIVITY + rule"
+      on_yes:
+        detour:
+          - { name: "Support / Ticket", detail: "resolve qua O-SUPPORT", then: PH5-S1 }
+      on_no: { next: PH5-S3 }
+
+crosscutting:
+  - { id: CC-A, name: "Automation", detail: "Workflows, auto assignment — chạy dọc mọi phase" }
+  - { id: CC-B, name: "Notifications", detail: "Email / SMS / in-app — cho khách và nội bộ" }
+  - { id: CC-C, name: "Approval", detail: "Manager / discount / contract — hiện thực bởi P-08" }
+  - { id: CC-D, name: "Audit & Compliance", detail: "Logs, tracking, GDPR — hiện thực bởi P-05, P-06" }

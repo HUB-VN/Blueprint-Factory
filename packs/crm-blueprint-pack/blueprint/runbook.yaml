@@ -1,0 +1,98 @@
+# FlowX CRM — Operations Runbook
+schema: flowx/runbook@1
+
+health_flows:
+  - id: HF-1
+    name: "Event ingestion"
+    metric: "event/phút theo từng trigger"
+    bad_sign: "Tụt = kênh chết; tăng đột biến = kiểm tra R-8 + P-04"
+  - id: HF-2
+    name: "Workflow progress"
+    metric: "instance active / chờ gate / lỗi"
+    bad_sign: "Instance kẹt một bước quá ngưỡng — tín hiệu sớm nhất của sự cố nghiệp vụ"
+  - id: HF-3
+    name: "Integration sync"
+    metric: "tỷ lệ thành công sync O-ERP / O-BILLING / O-MSG"
+    bad_sign: "Retry queue dài = hệ thống ngoài chậm hoặc từ chối"
+  - id: HF-4
+    name: "API experience"
+    metric: "latency p95 + error rate theo service"
+    bad_sign: "Dòng người dùng cảm nhận trực tiếp"
+
+component_ops:
+  - component: R-1
+    watch: "instance active / stuck / failed"
+    alert_when: "kẹt một bước quá ngưỡng; failed tăng"
+    first_response: "Xem instance detail → xác định activity lỗi → retry hoặc compensate"
+  - component: R-2
+    watch: "thời gian đánh giá rule + tỷ lệ lỗi rule"
+    alert_when: "rule mới deploy làm gate từ chối bất thường"
+    first_response: "So tỷ lệ pass gate trước/sau thay đổi → rollback rule nếu lệch"
+  - component: R-3
+    watch: "consumer lag + DLQ depth"
+    alert_when: "lag tăng liên tục; DLQ > 0"
+    first_response: "Scale consumer chậm; xử lý từng message DLQ — không purge"
+  - component: R-4
+    watch: "job đúng hạn / miss"
+    alert_when: "job miss hoặc chạy trễ quá ngưỡng"
+    first_response: "Xem job history → chạy bù nếu nghiệp vụ cho phép"
+  - component: R-5
+    watch: "chính nó — heartbeat alert pipeline"
+    alert_when: "heartbeat không đến đúng lịch"
+    first_response: "Kiểm tra alerting stack trước khi tin 'không alert = không sự cố'"
+  - component: R-6
+    watch: "ingest rate + độ trễ index"
+    alert_when: "log ngừng vào từ một service"
+    first_response: "Service sống mà không log = sự cố logging agent"
+  - component: R-7
+    watch: "trace sampling + span lỗi"
+    alert_when: "p95 một hop tăng bất thường"
+    first_response: "Mở trace chậm nhất → tìm hop nghẽn → đối chiếu deploy gần nhất"
+  - component: R-8
+    watch: "replica count + HPA event"
+    alert_when: "scale max vẫn quá tải; flapping"
+    first_response: "Nâng trần tạm + tìm nguyên nhân gốc (query chậm? N+1?)"
+
+operating_rhythm:
+  daily: "Đọc dashboard 4 health flows; kiểm tra DLQ, instance kẹt qua đêm, job miss, alert trong đêm."
+  weekly: "Review xu hướng — lag trung bình, tỷ lệ pass G-1..G-5, top 5 API chậm, dung lượng storage theo P-07."
+  monthly: "Test khôi phục backup, xoay credentials, diễn tập SC-01, rà soát rule/policy không còn dùng."
+  per_release: "Qua CI/CD không ngoại lệ — canary, theo dõi error rate 30 phút, auto-rollback vượt ngưỡng."
+
+incidents:
+  - id: SC-01
+    name: "Lead ngừng vào từ một kênh"
+    detect: "HF-1 — event ingestion của trigger tụt về ~0"
+    isolate: "Adapter còn sống? Credential/webhook nền tảng ngoài còn hạn? API ngoài có đổi?"
+    resolve: "Khôi phục adapter / gia hạn token; backfill lead trong khoảng mất kết nối nếu nguồn cho phép."
+
+  - id: SC-02
+    name: "Consumer lag tăng không hồi"
+    detect: "R-3 — lag một consumer group tăng tuyến tính"
+    isolate: "Consumer chậm hay message độc? Xem DLQ + log lỗi lặp."
+    resolve: "Message độc → cách ly DLQ, sửa dữ liệu, replay. Chậm thật → scale consumer."
+    never_do: "Purge queue để 'hết lag' — mất event là mất nghiệp vụ."
+
+  - id: SC-03
+    name: "ERP sync thất bại hàng loạt (PH-4)"
+    detect: "HF-3 — sync O-ERP tụt; order kẹt ở PH4-S1"
+    isolate: "ERP down, mạng, hay schema đổi? Đọc response lỗi trong retry queue."
+    resolve: "ERP down → retry with backoff + báo đội Delivery; schema đổi → sửa mapping, replay queue. Kích hoạt CC-B báo khách nếu vượt SLA (BR-05)."
+
+  - id: SC-04
+    name: "Phê duyệt tắc nghẽn"
+    detect: "HF-2 — instance dồn ứ tại approval gate (E-3)"
+    isolate: "Người duyệt vắng, notification không đến, hay ngưỡng mới bắt quá nhiều deal?"
+    resolve: "Escalation sang người duyệt dự phòng theo P-08 (approval_timeout_hours); nếu do đổi ngưỡng → báo chủ policy xem lại."
+
+operating_antipattern: >
+  Không bao giờ sửa dữ liệu trực tiếp trong database của service để "thông" instance kẹt.
+  Mọi can thiệp qua API hoặc compensate của R-1 — nếu không, audit log (P-06) và workflow state lệch thực tế vĩnh viễn.
+
+incident_report_template: |
+  ## Sự cố: [tên]
+  ## Mức độ: SEV-[1/2/3] · Bắt đầu: [time] · Kết thúc: [time]
+  ## Ảnh hưởng: [health flow nào, bao nhiêu khách/instance]
+  ## Dòng thời gian: [phát hiện → khoanh vùng → xử lý]
+  ## Nguyên nhân gốc: [5-whys tóm tắt]
+  ## Hành động phòng ngừa: [việc + người + hạn]

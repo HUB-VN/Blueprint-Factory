@@ -1,0 +1,22 @@
+# Blueprint Factory (repository)
+
+> Enterprise system blueprints published in Dual Edition: Human Edition (HTML docs for reading) + Agent Pack (structured YAML/JSON for AI agents to execute). Methodology: FlowX — five layers, Trigger → Flow → Capability → Policy → Runtime. Content language: Vietnamese (English planned).
+
+If you are an AI agent: do not scrape the site HTML. Each blueprint has an Agent Pack in `packs/` — start from its `CLAUDE.md`. Parameters marked `value: null` must be asked of the user, never invented. Cite blueprint IDs (BR-, SVC-, P-, G-...) in everything you generate.
+
+## Agent Packs
+
+- [FlowX CRM (BP-01)](packs/crm-blueprint-pack/CLAUDE.md): omnichannel CRM blueprint — journey.yaml (5 phases, gates G-1..G-5, 9 triggers), requirements.yaml (BR-01..07), services.yaml (15 SVC-*), policies.yaml (P-01..08, enforcement E-1..E-4), architecture.yaml (AD-01..05, runtime, infra, 9 outcomes), runbook.yaml (health flows, incidents SC-01..04)
+
+## Standard
+
+- [Dual Edition Publishing Standard v1.0](standard/DUAL-EDITION-STANDARD.md): pack structure, ID conventions, file schemas, CLAUDE.md format, release checklist
+
+## Human Edition
+
+- [Site homepage](site/index.md): positioning + blueprint library
+- [FlowX CRM summary](site/crm/crm.md): machine-readable overview + usage guide
+
+## Tooling
+
+- [Pack validator](tools/validate_pack.py): YAML parse, ID cross-refs, manifest checksums (MIT licensed)

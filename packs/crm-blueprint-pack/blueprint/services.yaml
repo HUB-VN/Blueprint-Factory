@@ -1,0 +1,131 @@
+# FlowX CRM — Capability Catalog (15 services)
+# Luật vàng: service khác muốn dữ liệu → gọi API hoặc nghe event, KHÔNG đọc thẳng database (AD-03).
+schema: flowx/services@1
+clusters:
+  - { id: CL-CUSTOMER, name: "Customer", question: "Ai là khách, deal ở đâu?" }
+  - { id: CL-COMMERCE, name: "Commerce", question: "Bán gì, giá nào, giao ra sao?" }
+  - { id: CL-ENGAGEMENT, name: "Engagement", question: "Chạm khách thế nào, đo bằng gì?" }
+
+services:
+  - id: SVC-LEAD
+    name: Lead Service
+    cluster: CL-CUSTOMER
+    responsibility: Vòng đời lead — capture, enrich, scoring, qualify.
+    owns_data: [lead, lead_score, lead_source]
+    serves_phases: [PH-1]
+    depends_on: [SVC-CONTACT, SVC-CAMPAIGN, R-2]
+
+  - id: SVC-CONTACT
+    name: Contact Service
+    cluster: CL-CUSTOMER
+    responsibility: Hồ sơ cá nhân, khử trùng lặp, consent record.
+    owns_data: [contact, consent_record]
+    serves_phases: [PH-1, PH-2, PH-3, PH-4, PH-5]
+    depends_on: []
+
+  - id: SVC-ACCOUNT
+    name: Account Service
+    cluster: CL-CUSTOMER
+    responsibility: Hồ sơ tổ chức và quan hệ contact–account.
+    owns_data: [account, account_hierarchy]
+    serves_phases: [PH-1, PH-2, PH-3, PH-4, PH-5]
+    depends_on: [SVC-CONTACT]
+
+  - id: SVC-OPP
+    name: Opportunity Service
+    cluster: CL-CUSTOMER
+    responsibility: Vòng đời deal — tạo, pipeline stage, won/lost kèm lý do.
+    owns_data: [opportunity, quote_line, lost_reason]
+    serves_phases: [PH-3]
+    depends_on: [SVC-ACCOUNT, SVC-PRODUCT, SVC-PRICING]
+
+  - id: SVC-ACTIVITY
+    name: Activity Service
+    cluster: CL-CUSTOMER
+    responsibility: Ghi nhận mọi tương tác — call, email, meeting, chat (BR-03).
+    owns_data: [activity, interaction_log]
+    serves_phases: [PH-2, PH-3, PH-4, PH-5]
+    depends_on: [SVC-CONTACT, SVC-EMAIL]
+
+  - id: SVC-PRODUCT
+    name: Product Service
+    cluster: CL-COMMERCE
+    responsibility: Danh mục sản phẩm, cấu hình, phiên bản.
+    owns_data: [product_catalog]
+    serves_phases: [PH-3, PH-4]
+    depends_on: []
+
+  - id: SVC-PRICING
+    name: Pricing Service
+    cluster: CL-COMMERCE
+    responsibility: Bảng giá, chiết khấu, quy tắc giá theo phân khúc.
+    owns_data: [price_book, discount_rule]
+    serves_phases: [PH-3]
+    depends_on: [SVC-PRODUCT, P-08]
+
+  - id: SVC-ORDER
+    name: Order Service
+    cluster: CL-COMMERCE
+    responsibility: Đơn hàng từ deal thắng đến fulfillment hoàn tất.
+    owns_data: [order, fulfillment_status]
+    serves_phases: [PH-4]
+    depends_on: [SVC-OPP, SVC-INVENTORY, O-ERP]
+
+  - id: SVC-INVENTORY
+    name: Inventory Service
+    cluster: CL-COMMERCE
+    responsibility: Tồn kho, đặt giữ hàng, yêu cầu procurement.
+    owns_data: [stock_level, po_request]
+    serves_phases: [PH-4]
+    depends_on: [O-ERP]
+
+  - id: SVC-PAYMENT
+    name: Payment Service
+    cluster: CL-COMMERCE
+    responsibility: Thanh toán, hóa đơn, subscription.
+    owns_data: [payment, invoice]
+    serves_phases: [PH-4, PH-5]
+    depends_on: [SVC-ORDER, O-BILLING]
+
+  - id: SVC-EMAIL
+    name: Email Service
+    cluster: CL-ENGAGEMENT
+    responsibility: Gửi/nhận email giao dịch + nurture, template.
+    owns_data: [email_log, email_template]
+    serves_phases: [PH-1, PH-2, PH-3, PH-4, PH-5]
+    depends_on: [SVC-CONTACT]
+
+  - id: SVC-CAMPAIGN
+    name: Campaign Service
+    cluster: CL-ENGAGEMENT
+    responsibility: Chiến dịch nurture/marketing, phân khúc, đo kết quả.
+    owns_data: [campaign, segment, utm]
+    serves_phases: [PH-1, PH-2, PH-5]
+    depends_on: [SVC-EMAIL, SVC-LEAD, SVC-ANALYTICS]
+
+  - id: SVC-TASK
+    name: Task Service
+    cluster: CL-ENGAGEMENT
+    responsibility: Công việc, nhắc hẹn, follow-up của người dùng.
+    owns_data: [task, reminder]
+    serves_phases: [PH-2, PH-3, PH-4, PH-5]
+    depends_on: [R-4, O-CALENDAR]
+
+  - id: SVC-DOC
+    name: Document Service
+    cluster: CL-ENGAGEMENT
+    responsibility: Tài liệu, hợp đồng, proposal — phiên bản và chữ ký.
+    owns_data: [document, document_version]
+    serves_phases: [PH-3, PH-4]
+    depends_on: [P-08]
+
+  - id: SVC-ANALYTICS
+    name: Analytics Service
+    cluster: CL-ENGAGEMENT
+    responsibility: KPI, report, forecast từ dữ liệu mọi service (đọc từ O-DWH).
+    owns_data: [metric, report_definition]
+    serves_phases: [PH-1, PH-2, PH-3, PH-4, PH-5]
+    depends_on: [O-DWH]
+
+design_smell:
+  - Một service mới chỉ phục vụ đúng một phase và không service nào khác cần nó → có thể là logic của flow đội lốt service.

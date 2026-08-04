@@ -1,0 +1,98 @@
+{
+  "pack": "crm-blueprint",
+  "title": "FlowX CRM Blueprint Pack",
+  "version": "1.0.0",
+  "schema_version": 1,
+  "language": "vi",
+  "license": "CC BY-NC 4.0",
+  "publisher": {
+    "name": "AI Business Architect",
+    "site": "TBD",
+    "edition_human": "TBD — URL Human Edition sau khi deploy"
+  },
+  "entry_point": "CLAUDE.md",
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "role": "entry",
+      "sha256": "8dbb2dcd16f3dacf"
+    },
+    {
+      "path": "README.md",
+      "role": "readme",
+      "sha256": "bfea99540affb8ee"
+    },
+    {
+      "path": "blueprint/philosophy.md",
+      "role": "philosophy",
+      "sha256": "16aa31f8cdc2dcbb"
+    },
+    {
+      "path": "blueprint/journey.yaml",
+      "role": "flow",
+      "sha256": "8fc93b96571a7f90"
+    },
+    {
+      "path": "blueprint/requirements.yaml",
+      "role": "requirements",
+      "sha256": "24e659bad7802e22"
+    },
+    {
+      "path": "blueprint/services.yaml",
+      "role": "services",
+      "sha256": "d06fcc1a2234a468"
+    },
+    {
+      "path": "blueprint/policies.yaml",
+      "role": "policies",
+      "sha256": "72ab0749a1dd98a8"
+    },
+    {
+      "path": "blueprint/architecture.yaml",
+      "role": "architecture",
+      "sha256": "03e5ce1a92339b6d"
+    },
+    {
+      "path": "blueprint/runbook.yaml",
+      "role": "runbook",
+      "sha256": "9405808e9ce5f004"
+    },
+    {
+      "path": "agent-guides/coding-agent.md",
+      "role": "agent-guide",
+      "sha256": "18eb5b3761d15988"
+    },
+    {
+      "path": "agent-guides/business-agent.md",
+      "role": "agent-guide",
+      "sha256": "6a5e0c74474e5ec8"
+    },
+    {
+      "path": "agent-guides/product-agent.md",
+      "role": "agent-guide",
+      "sha256": "124ef63a306b6641"
+    },
+    {
+      "path": "schemas/pack.schema.json",
+      "role": "schema",
+      "sha256": "aa0879298529f998"
+    }
+  ],
+  "id_index": {
+    "BR": 7,
+    "AD": 5,
+    "P": 8,
+    "SVC": 15,
+    "PH": 5,
+    "G": 5,
+    "T": 9,
+    "R": 8,
+    "O": 9,
+    "SC": 4,
+    "E": 4,
+    "HF": 4,
+    "CC": 4,
+    "CL": 3,
+    "INF": 8
+  }
+}

@@ -1,0 +1,61 @@
+# FlowX CRM — Architecture Decisions, Runtime, Infrastructure, Outcomes
+schema: flowx/architecture@1
+
+style: event-driven microservices, orchestration tập trung, policy-enforced, cloud-native
+
+decisions:
+  - id: AD-01
+    decision: Event-first — mọi trigger chuẩn hóa thành event lên bus; service không gọi thẳng nhau khi khởi phát quy trình.
+    rationale: Thêm kênh không sửa consumer (BR-01).
+    consequences: Cần event schema thống nhất (source, type, payload, timestamp, correlation_id) + consumer idempotent.
+
+  - id: AD-02
+    decision: Orchestration tập trung — Customer Journey do Workflow Engine điều phối, không choreography rải rác.
+    rationale: Flow có nhiều gate phê duyệt, cần nhìn thấy trạng thái end-to-end.
+    consequences: Workflow Engine là single point cần HA; mỗi phase là một workflow definition có compensation.
+
+  - id: AD-03
+    decision: Database-per-service — mỗi capability sở hữu dữ liệu riêng; đọc tổng hợp qua O-DWH, không join chéo DB.
+    rationale: Ranh giới dữ liệu là ranh giới thay đổi.
+    consequences: Cần ETL/CDC pipeline về warehouse; chấp nhận eventual consistency ở view tổng hợp.
+
+  - id: AD-04
+    decision: Policy tách khỏi code — 8 policy cưỡng chế ở E-1..E-4, service không tự cài luật riêng.
+    rationale: Đổi luật chơi là đổi cấu hình, không deploy (BR-04).
+    consequences: Đầu tư middleware chung + rule engine từ ngày đầu.
+
+  - id: AD-05
+    decision: Observability mặc định — logging tập trung + tracing + health check là bắt buộc mọi service từ ngày đầu.
+    rationale: Retrofit observability đắt gấp nhiều lần.
+    consequences: Template service (scaffold) phải có sẵn 3 thứ này.
+
+runtime:
+  - { id: R-1, name: "Workflow Engine", role: "Orchestration — thực thi journey, quản lý state, retry, compensation", candidates: [Temporal, Camunda] }
+  - { id: R-2, name: "Rule Engine", role: "Business rules — đánh giá G-1..G-5, scoring, ngưỡng P-08; luật là dữ liệu" }
+  - { id: R-3, name: "Event Bus", role: "Messaging — đệm tải, at-least-once + idempotent consumer", candidates: [Kafka, RabbitMQ] }
+  - { id: R-4, name: "Scheduler", role: "Jobs & delays — nhắc hẹn, re-score, retention job; nguồn trigger T-8" }
+  - { id: R-5, name: "Monitoring", role: "Health & alerts theo SLO" }
+  - { id: R-6, name: "Logging", role: "Centralized structured logs + correlation_id xuyên service" }
+  - { id: R-7, name: "Tracing", role: "Distributed tracing gateway → workflow → capability → integration" }
+  - { id: R-8, name: "Scaling", role: "Auto scale (HPA) — capability stateless, state dồn về DB + workflow engine" }
+
+infrastructure:
+  - { id: INF-K8S, name: "Kubernetes", role: "Container orchestration" }
+  - { id: INF-MS, name: "Microservices", role: "15 capability + runtime components deploy độc lập" }
+  - { id: INF-DB, name: "Database SQL/NoSQL", role: "SQL cho giao dịch (order, payment), NoSQL cho dữ liệu linh hoạt (activity)" }
+  - { id: INF-REDIS, name: "Redis Cache", role: "Session, hot-read (catalog, pricing), rate-limit counter" }
+  - { id: INF-BROKER, name: "Message Broker", role: "Hiện thực R-3 — Kafka (stream lớn) / RabbitMQ (command routing)" }
+  - { id: INF-S3, name: "Storage S3/Blob", role: "Tài liệu, hợp đồng, đính kèm, ghi âm — đối tượng của P-07" }
+  - { id: INF-CDN, name: "CDN", role: "Tài nguyên tĩnh web form, portal" }
+  - { id: INF-CICD, name: "CI/CD", role: "Mỗi service một pipeline; canary + auto-rollback" }
+
+outcomes:
+  - { id: O-CUSTOMER360, name: "Customer 360 View", detail: "Hồ sơ hợp nhất từ contact + account + activity + order — nguồn sự thật khi chạm khách" }
+  - { id: O-ANALYTICS, name: "Analytics & Dashboard", detail: "Reports, KPIs, forecasting — tỷ lệ chuyển đổi từng gate" }
+  - { id: O-MSG, name: "Email / SMS", detail: "Notifications + campaigns gửi ra ngoài (CC-B)" }
+  - { id: O-CALENDAR, name: "Calendar / Reminder", detail: "Tasks, follow-ups đồng bộ lịch" }
+  - { id: O-BILLING, name: "Payment / Billing", detail: "Invoices, subscriptions" }
+  - { id: O-ERP, name: "ERP / Inventory", detail: "Sync orders & stock hai chiều — PH-4 phụ thuộc" }
+  - { id: O-SUPPORT, name: "Support System", detail: "Tickets, knowledge base — nhánh G-5 on_yes" }
+  - { id: O-DWH, name: "Data Warehouse", detail: "BI & advanced analytics; nguồn huấn luyện AI" }
+  - { id: O-AIML, name: "AI / ML Services", detail: "Prediction, recommendation — đề xuất quay lại qua T-9. Vòng lặp học khép kín." }

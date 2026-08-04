@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlowX CRM Blueprint — Human Edition + Agent Pack · Blueprint Factory</title>
+<meta name="description" content="Bộ blueprint CRM đa kênh hoàn chỉnh: 7 tài liệu Human Edition + Agent Pack máy đọc được cho Claude Code, Cursor và AI agent.">
+<link rel="alternate" type="text/markdown" href="crm.md">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"FlowX CRM Blueprint","inLanguage":"vi","isPartOf":{"@type":"WebSite","name":"Blueprint Factory"},"about":"CRM reference architecture — dual edition for humans and AI agents"}
+</script>
+<style>
+:root {
+  --surface-base: #FAFAFA; --surface-raised: #FFFFFF; --surface-deep: #1A1A1A; --surface-edge: #F4F4F4;
+  --ink: #0A0A0A; --ink-soft: #404040; --ink-muted: #8A8A8A;
+  --accent: #0066FF; --accent-deep: #0049BD; --accent-soft: rgba(0,102,255,0.08);
+  --support: #00A663; --support-soft: rgba(0,166,99,0.08);
+  --line: #E5E5E5; --line-strong: #0A0A0A;
+  --font-display: 'Inter', -apple-system, sans-serif; --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: var(--ink); background: var(--surface-base); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1020px; margin: 0 auto; padding: 0 32px; }
+a { color: var(--accent); }
+.nav { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--surface-base); z-index: 10; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+.nav-logo { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 24px; font-size: 14px; }
+.nav-links a { color: var(--ink-soft); text-decoration: none; font-weight: 500; }
+.nav-links a:hover { color: var(--accent); }
+
+.breadcrumb { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-muted); padding: 28px 0 0; }
+.breadcrumb a { color: var(--ink-soft); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+
+.hero { padding: 36px 0 56px; border-bottom: 2px solid var(--ink); }
+.hero-badges { display: flex; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
+.badge { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; }
+.badge.live { background: var(--support-soft); color: var(--support); }
+.badge.blue { background: var(--accent-soft); color: var(--accent); }
+.badge.dark { background: var(--surface-edge); color: var(--ink-muted); }
+.hero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(34px, 4.8vw, 54px); line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 18px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero p.sub { font-size: 18.5px; line-height: 1.55; color: var(--ink-soft); max-width: 700px; margin-bottom: 32px; }
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.btn { display: inline-block; font-family: var(--font-display); font-weight: 600; font-size: 15px; padding: 13px 26px; border-radius: 8px; text-decoration: none; transition: all 0.15s ease; }
+.btn-primary { background: var(--ink); color: #fff; }
+.btn-primary:hover { background: var(--accent); }
+.btn-agent { background: var(--support); color: #fff; font-family: var(--font-mono); font-size: 13.5px; }
+.btn-agent:hover { background: #00784A; }
+.stats { display: flex; gap: 32px; margin-top: 36px; flex-wrap: wrap; }
+.stat b { display: block; font-family: var(--font-display); font-weight: 700; font-size: 26px; letter-spacing: -0.02em; color: var(--ink); }
+.stat span { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); }
+
+section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+.sec-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: -0.03em; margin-bottom: 12px; }
+p.lede { font-size: 16.5px; color: var(--ink-soft); max-width: 700px; margin-bottom: 32px; }
+
+.doc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.doc-card { display: block; padding: 22px 22px; background: var(--surface-raised); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; transition: all 0.15s ease; }
+.doc-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.doc-num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+.doc-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.01em; }
+.doc-card p { font-size: 13px; line-height: 1.55; color: var(--ink-soft); }
+@media (max-width: 760px) { .doc-grid { grid-template-columns: 1fr; } }
+
+.pack-box { background: var(--surface-deep); border-radius: 14px; padding: 44px 40px; color: #E4E6EB; }
+.pack-box .sec-label { color: #00E07F; }
+.pack-box h2 { color: #fff; }
+.pack-box p.lede { color: #A8ACB8; }
+.pack-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start; }
+.tree { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.85; color: #A8ACB8; background: #050609; border-radius: 10px; padding: 22px 26px; overflow-x: auto; white-space: pre; }
+.tree b { color: #00E07F; font-weight: 500; }
+.tree i { color: #6FB2FF; font-style: normal; }
+.pack-steps { list-style: none; }
+.pack-steps li { padding: 12px 0 12px 40px; position: relative; font-size: 14.5px; color: #A8ACB8; border-bottom: 1px solid #2A2D38; }
+.pack-steps li:last-child { border-bottom: none; }
+.pack-steps li b { color: #E4E6EB; }
+.pack-steps .n { position: absolute; left: 0; top: 10px; width: 26px; height: 26px; border: 1.5px solid #00E07F; color: #00E07F; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; }
+.pack-steps code { font-family: var(--font-mono); font-size: 12px; background: rgba(255,255,255,0.08); padding: 2px 7px; border-radius: 4px; color: #E4E6EB; }
+.pack-cta { margin-top: 28px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.pack-meta { font-family: var(--font-mono); font-size: 11px; color: #6A6F7D; }
+@media (max-width: 860px) { .pack-grid { grid-template-columns: 1fr; } }
+
+.audience { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.aud-card { background: var(--surface-raised); border: 1px solid var(--line); border-top: 3px solid var(--ink); border-radius: 8px; padding: 24px 22px; }
+.aud-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-bottom: 10px; }
+.aud-card p { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
+.aud-card .g { font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin-top: 12px; display: block; }
+@media (max-width: 760px) { .audience { grid-template-columns: 1fr; } }
+
+.footer { border-top: 2px solid var(--ink); padding: 32px 0 48px; }
+.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer .f-brand { font-family: var(--font-display); font-weight: 700; font-size: 16px; }
+.footer .f-brand span { color: var(--accent); }
+.footer .f-meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); }
+@media print { .nav { display: none; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="../index.html">Blueprint<span>Factory</span></a>
+    <div class="nav-links">
+      <a href="#docs">Human Edition</a>
+      <a href="#pack">Agent Pack</a>
+      <a href="#audience">Dành cho ai</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap breadcrumb"><a href="../index.html">Thư viện</a> / BP-01 · FlowX CRM</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-badges">
+      <span class="badge live">● Đã phát hành · v1.0.0</span>
+      <span class="badge blue">Dual Edition</span>
+      <span class="badge dark">Phương pháp FlowX</span>
+    </div>
+    <h1>FlowX <em>CRM</em> Blueprint</h1>
+    <p class="sub">Bản thiết kế hoàn chỉnh cho nền tảng CRM đa kênh trọn vòng đời khách hàng — từ lead đầu tiên đến gia hạn hợp đồng, với tự động hóa, phê duyệt theo ngưỡng, và vòng lặp AI khép kín.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="docs/index.html">Đọc Human Edition →</a>
+      <a class="btn btn-agent" href="crm-blueprint-pack.zip" download>⬇ Tải Agent Pack (.zip)</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>7</b><span>Tài liệu</span></div>
+      <div class="stat"><b>5</b><span>Giai đoạn journey</span></div>
+      <div class="stat"><b>15</b><span>Service</span></div>
+      <div class="stat"><b>8</b><span>Policy</span></div>
+      <div class="stat"><b>108</b><span>ID chuẩn hóa</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="docs">
+  <div class="wrap">
+    <div class="sec-label">Human Edition</div>
+    <h2>Bảy tài liệu, một hệ thống</h2>
+    <p class="lede">Đọc theo thứ tự nếu mới tiếp cận; đọc thẳng tài liệu chuyên sâu nếu đã nắm bối cảnh. Tất cả liên kết chéo bằng ID chuẩn.</p>
+    <div class="doc-grid">
+      <a class="doc-card" href="docs/index.html"><div class="doc-num">Hub</div><h3>Trang chủ bộ tài liệu</h3><p>Bản đồ 5 tầng FlowX và hướng dẫn đọc theo vai trò.</p></a>
+      <a class="doc-card" href="docs/whitepaper.html"><div class="doc-num">01</div><h3>Whitepaper — Triết lý FlowX</h3><p>Năm tầng, ba phép thử kiến trúc, và CRM như phép chứng minh.</p></a>
+      <a class="doc-card" href="docs/brd.html"><div class="doc-num">02</div><h3>BRD — Đặc tả nghiệp vụ</h3><p>Journey 5 giai đoạn, 5 gate, 2 vòng nurture, 7 yêu cầu BR-01→07.</p></a>
+      <a class="doc-card" href="docs/architecture.html"><div class="doc-num">03</div><h3>Solution Architecture</h3><p>9 trigger, 5 quyết định kiến trúc, 8 runtime, hạ tầng cloud-native.</p></a>
+      <a class="doc-card" href="docs/capabilities.html"><div class="doc-num">04</div><h3>Capability Spec</h3><p>15 service chia 3 cụm, bản đồ service × giai đoạn.</p></a>
+      <a class="doc-card" href="docs/policies.html"><div class="doc-num">05</div><h3>Policy Matrix</h3><p>8 chính sách × 5 giai đoạn, 4 điểm cưỡng chế kỹ thuật.</p></a>
+      <a class="doc-card" href="docs/runbook.html"><div class="doc-num">06</div><h3>Runbook vận hành</h3><p>4 dòng chảy sức khỏe, nhịp vận hành, 4 kịch bản sự cố.</p></a>
+    </div>
+  </div>
+</section>
+
+<section id="pack" style="border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="pack-box">
+      <div class="sec-label">Agent Pack</div>
+      <h2>Thả vào repo, agent bắt đầu làm việc</h2>
+      <p class="lede">Cùng blueprint đó ở dạng máy dùng được — YAML có ID chuẩn, decision table, tham số chờ điền. Không phải bản tóm tắt: là context pack để thực thi.</p>
+      <div class="pack-grid">
+        <div class="tree">crm-blueprint-pack/
+├── <b>manifest.json</b>       <i># inventory + checksum</i>
+├── <b>CLAUDE.md</b>           <i># file mồi cho agent</i>
+├── blueprint/
+│   ├── philosophy.md
+│   ├── <b>journey.yaml</b>    <i># 5 phase, gate G-1..G-5</i>
+│   ├── requirements.yaml
+│   ├── <b>services.yaml</b>   <i># 15 SVC-*</i>
+│   ├── <b>policies.yaml</b>   <i># P-01..08 + tham số</i>
+│   ├── architecture.yaml
+│   └── runbook.yaml
+├── agent-guides/
+│   ├── coding-agent.md    <i># 5 milestone build</i>
+│   ├── business-agent.md
+│   └── product-agent.md
+└── schemas/pack.schema.json</div>
+        <ol class="pack-steps">
+          <li><span class="n">1</span><b>Tải và giải nén</b> vào repo của bạn (hoặc <code>--add-dir</code> với Claude Code).</li>
+          <li><span class="n">2</span>Ra lệnh: <b>"Đọc <code>CLAUDE.md</code> trong crm-blueprint-pack và bắt đầu Milestone 0."</b></li>
+          <li><span class="n">3</span>Agent sẽ <b>hỏi bạn các tham số</b> cố ý để trống (ngưỡng chiết khấu, retention, rate limit…) — không tự bịa.</li>
+          <li><span class="n">4</span>Mọi code/PRD sinh ra <b>trích dẫn ID</b> (BR-03, SVC-LEAD, P-08…) — truy vết ngược về blueprint.</li>
+        </ol>
+      </div>
+      <div class="pack-cta">
+        <a class="btn btn-agent" href="crm-blueprint-pack.zip" download>⬇ crm-blueprint-pack.zip</a>
+        <span class="pack-meta">v1.0.0 · 14 files · YAML validated · CC BY-NC 4.0</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="audience" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="sec-label">Dành cho ai</div>
+    <h2>Ba cách dùng một blueprint</h2>
+    <div class="audience" style="margin-top:28px;">
+      <div class="aud-card">
+        <h3>Founder / CTO tự xây</h3>
+        <p>Dùng làm kiến trúc phase-0: đội dev + coding agent bám milestone trong pack, MVP cắt ở Lead → Opportunity.</p>
+        <span class="g">→ coding-agent.md</span>
+      </div>
+      <div class="aud-card">
+        <h3>Doanh nghiệp đi mua CRM</h3>
+        <p>Dùng làm bộ tiêu chí RFP: chấm phần mềm có sẵn theo 15 capability và 8 policy — mua đúng thứ mình cần.</p>
+        <span class="g">→ business-agent.md</span>
+      </div>
+      <div class="aud-card">
+        <h3>BA / PM viết tài liệu</h3>
+        <p>Chuyển blueprint thành PRD, epic map, roadmap — mỗi gate thành bảng quyết định, mỗi BR thành acceptance criteria.</p>
+        <span class="g">→ product-agent.md</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div>
+      <div class="f-brand">Blueprint<span>Factory</span></div>
+      <div class="f-meta">BP-01 · FlowX CRM · v1.0.0 · Human Edition + Agent Pack đồng bộ</div>
+    </div>
+    <div class="f-meta"><a href="crm.md" style="color:inherit;">Bản .md cho agent</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
