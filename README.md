@@ -31,6 +31,14 @@ Every blueprint here ships in two synchronized editions from a single source of 
 | BP-05 | FlowX E-commerce | 🗓 2027 | — |
 | BP-06 | FlowX Booking | 🗓 2027 | — |
 
+## 🧰 Implementation Kits
+
+Kits apply a blueprint to a specific industry and project phase — practical documents for the delivery team, citing blueprint IDs.
+
+| ID | Kit | Applies | Status |
+|---|---|---|---|
+| KIT-01 | **CRM Kickoff Kit — Private High Schools** (Vietnamese): 14 pre-/post-kickoff documents for deploying a sales & marketing CRM covering long-term enrollment, short courses and events — discovery, admissions-season calendar, charter, RACI, data & child-data compliance, kickoff agenda, RAID, implementation plan, solution design, sales & marketing playbooks, UAT, go-live & KPIs | BP-01 | ✅ v1.0.0 · [`kits/crm-school-kickoff/`](kits/crm-school-kickoff/) |
+
 ## 🚀 Use with a coding agent (30 seconds)
 
 ```bash

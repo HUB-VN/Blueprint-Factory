@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.0] — 2026-10-13
+
+### Added
+- **KIT-01 · CRM Kickoff Kit — Trường THPT tư thục** (`kits/crm-school-kickoff/`, v1.0.0) — bộ 14 tài liệu trước và sau kickoff cho triển khai CRM Sales & Marketing ngành giáo dục, áp dụng BP-01: discovery, lịch mùa tuyển sinh & hành trình 3 dòng sản phẩm (`LN-DH` dài hạn, `LN-NH` ngắn hạn, `LN-SK` sự kiện), project charter, RACI & governance, data readiness & tuân thủ dữ liệu trẻ em, checklist gate `KG-0`, agenda kickoff với quyết định D-01..D-08, biên bản/RAID/change log, kế hoạch sprint theo mùa vụ, solution design, playbook Sales & Marketing, UAT & đào tạo, go-live/hypercare/KPI.
+
 ## [1.0.0] — 2026-08-04
 
 ### Added
