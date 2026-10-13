@@ -20,6 +20,14 @@ Mỗi blueprint phát hành hai ấn bản đồng bộ từ một nguồn sự 
 | BP-05 | FlowX E-commerce | 🗓 2027 |
 | BP-06 | FlowX Booking | 🗓 2027 |
 
+## Implementation Kits
+
+Kit áp một blueprint vào một ngành và một giai đoạn dự án cụ thể — tài liệu thực chiến cho đội triển khai, trích dẫn ID của blueprint.
+
+| ID | Kit | Áp dụng | Trạng thái |
+|---|---|---|---|
+| KIT-01 | **Bộ tài liệu Kickoff triển khai CRM — Trường tư thục THCS & THPT**: 15 tài liệu trước/sau kickoff cho CRM Sales & Marketing: tuyển sinh mọi khối 6–12 (đầu cấp, chuyển trường, lên cấp, tái ghi danh), khoá ngắn hạn, sự kiện & chương trình đào tạo là sản phẩm; kênh, nguồn lead, chiến dịch ở dạng khám phá; quy trình fit-gap & nâng cấp sản phẩm khi đơn vị triển khai là chủ sản phẩm CRM | BP-01 | ✅ v1.2.0 · [`kits/crm-school-kickoff/`](kits/crm-school-kickoff/) |
+
 ## Dùng trong 30 giây
 
 ```bash
@@ -47,6 +55,7 @@ Mở `site/index.html` để duyệt toàn bộ tài liệu HTML (hoặc qua Git
 ```
 standard/     Chuẩn Dual Edition Publishing (spec mọi pack tuân theo)
 packs/        Agent Packs — mỗi blueprint một thư mục, bắt đầu từ CLAUDE.md
+kits/         Implementation Kits — áp blueprint vào ngành/giai đoạn dự án cụ thể
 site/         Human Edition — site tĩnh kèm toàn bộ tài liệu HTML
 tools/        Validator (parse YAML, cross-ref ID, checksum manifest)
 ```
