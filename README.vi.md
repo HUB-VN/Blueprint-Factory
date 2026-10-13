@@ -26,7 +26,7 @@ Kit áp một blueprint vào một ngành và một giai đoạn dự án cụ t
 
 | ID | Kit | Áp dụng | Trạng thái |
 |---|---|---|---|
-| KIT-01 | **Bộ tài liệu Kickoff triển khai CRM — Trường tư thục THCS & THPT**: 14 tài liệu trước/sau kickoff cho CRM Sales & Marketing: tuyển sinh mọi khối 6–12 (đầu cấp, chuyển trường, lên cấp, tái ghi danh), khoá ngắn hạn, sự kiện & chương trình đào tạo là sản phẩm; kênh, nguồn lead, chiến dịch ở dạng khám phá | BP-01 | ✅ v1.1.0 · [`kits/crm-school-kickoff/`](kits/crm-school-kickoff/) |
+| KIT-01 | **Bộ tài liệu Kickoff triển khai CRM — Trường tư thục THCS & THPT**: 15 tài liệu trước/sau kickoff cho CRM Sales & Marketing: tuyển sinh mọi khối 6–12 (đầu cấp, chuyển trường, lên cấp, tái ghi danh), khoá ngắn hạn, sự kiện & chương trình đào tạo là sản phẩm; kênh, nguồn lead, chiến dịch ở dạng khám phá; quy trình fit-gap & nâng cấp sản phẩm khi đơn vị triển khai là chủ sản phẩm CRM | BP-01 | ✅ v1.2.0 · [`kits/crm-school-kickoff/`](kits/crm-school-kickoff/) |
 
 ## Dùng trong 30 giây
 

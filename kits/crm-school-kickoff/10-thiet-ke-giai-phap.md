@@ -177,6 +177,8 @@ Theo doc 05 §4.3. Bổ sung: hồ sơ của TVV nghỉ việc được Trưởn
 
 ## 9. Lệch chuẩn so với BP-01 (Deviation log)
 
+*Lệch chuẩn so với **blueprint** ghi ở đây. Lệch so với **sản phẩm chuẩn** (cần cấu hình đặc biệt, mở rộng, hoặc tính năng mới) ghi ở Gap register (doc 15 §5). Một DV có thể sinh ra một GAP và ngược lại; ghi chéo mã.*
+
 | ID | Điểm lệch | Lý do | Ảnh hưởng |
 |---|---|---|---|
 | DV-01 | `G-4` "In stock?" được hiểu là "còn chỗ": theo khối/lớp cho `LN-DH`, theo lớp cho `LN-NH`, theo sức chứa cho `LN-SK` | Sản phẩm giáo dục có giới hạn chỗ thay cho tồn kho | Bảng Sức chứa (§2) thay cho `SVC-INVENTORY` đầy đủ |
@@ -190,3 +192,4 @@ Theo doc 05 §4.3. Bổ sung: hồ sơ của TVV nghỉ việc được Trưởn
 | Project Owner | | ☐ | | |
 | Trưởng Marketing | | ☐ | | |
 | PM | | ☐ | | |
+| Product Manager CRM (Gap register) | | ☐ | | |

@@ -46,6 +46,7 @@ Mỗi quyết định gửi trước kèm **phương án đề xuất** (doc 06)
 | D-07 | Kênh liên lạc chính thức & chính sách tài khoản cá nhân | Chỉ các tài khoản thuộc sở hữu của trường (danh sách cụ thể lấy từ kiểm kê) là chính thức; tài khoản nhắn tin cá nhân chỉ dùng khi phụ huynh chủ động và phải tóm tắt vào CRM trong ngày | Sponsor |
 | D-08 | SLA (có thể khác theo loại tuyển sinh, ví dụ chuyển trường gấp hơn): speed-to-lead, follow-up sau sự kiện, phản hồi tài liệu dự án | Lead mới trong giờ làm việc: liên hệ ≤ [ĐIỀN] phút; ngoài giờ: trước [ĐIỀN] giờ sáng hôm sau; sau sự kiện ≤ 24h; trường phản hồi tài liệu ≤ [ĐIỀN] ngày làm việc | Project Owner |
 | D-09 | Taxonomy nguồn lead, cấu trúc chiến dịch, quy ước UTM, danh sách điểm vào tích hợp ở giai đoạn 1 | **Không chốt nội dung tại kickoff.** Chỉ chốt: ai cung cấp bằng chứng (doc 12 §1.1 bước K2), ngày workshop khám phá (K3), hạn chốt = `KG-1` | Trưởng Marketing + Trưởng TS |
+| D-10 | Nguyên tắc xử lý gap & nâng cấp sản phẩm (doc 15 §1–§3): thứ tự ưu tiên giải pháp, phân vị trí L1/L2/L3, nguyên tắc chi phí, số gap phát triển tối đa giai đoạn 1, lịch mùa vụ thắng lịch roadmap | Như doc 15 §1 và charter §4.3. Danh sách gap cụ thể chốt tại `KG-1` | Sponsor + Product Manager CRM |
 
 ## 4. Dàn ý slide (≈ 18 slide)
 
@@ -58,13 +59,13 @@ Mỗi quyết định gửi trước kèm **phương án đề xuất** (doc 06)
 7. Một hộ gia đình, ba dòng sản phẩm — sơ đồ doc 02 §5
 8. Phạm vi trong / ngoài / giai đoạn 2
 9. Lịch mùa vụ chồng lên lịch dự án — vùng cấm tô đỏ
-10. Lộ trình & gate KG-0..KG-4
+10. Lộ trình & gate KG-0..KG-4 (kèm `KG-D`) + gap đã biết và cách xử lý
 11. Tổ chức dự án & RACI rút gọn
 12. Nhịp họp & kênh liên lạc
 13. Demo: một ngày của tư vấn viên (chuyển sang sandbox)
 14. "Điều gì thay đổi với tôi?" — mỗi vai trò 1 dòng: tư vấn viên, Marketing, Kế toán, Ban giám hiệu
 15. Dữ liệu & quyền riêng tư: những việc chúng ta cam kết với phụ huynh
-16. Quyết định cần chốt hôm nay (D-01..D-08) + cách đi đến D-09
+16. Quyết định cần chốt hôm nay (D-01..D-08, D-10) + cách đi đến D-09
 17. Rủi ro hàng đầu & cách giảm thiểu
 18. 2 tuần tới: ai làm gì
 
@@ -76,6 +77,8 @@ Mỗi quyết định gửi trước kèm **phương án đề xuất** (doc 06)
 **Khi tư vấn viên lo "bị giám sát":** chuyển trọng tâm sang (1) chính sách ghi nhận công minh bạch, (2) không phải tự tổng hợp báo cáo cuối tuần, (3) lịch sử khách hàng không mất khi đồng nghiệp nghỉ phép.
 
 **Khi Marketing và Tuyển sinh tranh luận chất lượng lead (D-02):** không phân xử ai đúng — đưa về định nghĩa đo được và **đồng ý xem lại sau 30 ngày bằng dữ liệu CRM**. Ghi vào Decision log kèm ngày xem lại.
+
+**Khi trường hỏi "phần mềm có làm được X không" mà chưa có:** không hứa tại chỗ. "Em ghi nhận thành một gap, Product Council sẽ trả lời trong [ĐIỀN] ngày: làm bằng cấu hình, đưa vào sản phẩm, hay cách khác." (doc 15 §1.5)
 
 **Khi có yêu cầu mới ngoài phạm vi:** "Ý tưởng tốt — tôi ghi vào danh sách giai đoạn 2 / Change Request để SteerCo cân nhắc." Không thảo luận chi tiết tại kickoff.
 

@@ -30,6 +30,8 @@ Quy tắc gate: mọi mục **[Bắt buộc]** phải xanh. Mục **[Nên có]**
 ## T-2 → T-1 tuần: Đồng thuận trước
 
 - [ ] **[Bắt buộc]** Tổng hợp discovery (doc 01 §11) đã gửi Sponsor ≥ 5 ngày làm việc trước kickoff
+- [ ] **[Bắt buộc]** Fit-gap sơ bộ đã làm (doc 15 bước FG-1) và gap lớn đã có trong charter (doc 03 §4.3)
+- [ ] [Bắt buộc] Product Manager CRM đã được chỉ định cho dự án và có lịch Product Council
 - [ ] **[Bắt buộc]** RACI (doc 04 §3) đã được Project Owner xem
 - [ ] **[Bắt buộc]** Danh sách quyết định cần chốt tại kickoff (D-01..D-08, doc 07 §3) đã gửi kèm phương án đề xuất; với D-09 chỉ gửi kế hoạch khám phá (doc 12 §1.1) — **không ai được "nghe lần đầu" ở kickoff**
 - [ ] [Bắt buộc] Key user từng bộ phận đã được chỉ định, có cam kết thời gian

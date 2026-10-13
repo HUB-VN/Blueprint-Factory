@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0] — 2026-10-13
+
+### Added
+- **KIT-01 v1.2.0 · doc 15 Fit-Gap & Nâng cấp sản phẩm CRM** cho trường hợp đơn vị triển khai là chủ sản phẩm: nguyên tắc "một sản phẩm, không fork"; ba vị trí của gap (L1 sản phẩm lõi, L2 gói ngành giáo dục, L3 mở rộng riêng của khách hàng); cây quyết định xử lý gap; quy trình FG-1..FG-12 từ fit-gap sơ bộ đến cải tiến sau go-live; mẫu Gap register và đặc tả tính năng; Product Council; luồng phát triển song song với feature flag; gate `KG-D` Dev-complete.
+- Nối doc 15 vào các tài liệu khác: fit-gap sơ bộ trong discovery và checklist `KG-0`; mục gap & nguyên tắc chi phí trong charter (DL-8, mốc M2b); quyết định D-10; rủi ro RK-14..RK-16; luồng sản phẩm trong kế hoạch triển khai; kịch bản UAT cho gap, workaround và hồi quy; nhịp release sau go-live.
+
 ## [1.1.0] — 2026-10-13
 
 ### Added

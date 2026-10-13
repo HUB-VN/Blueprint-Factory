@@ -34,6 +34,8 @@
    Key user Tuyển sinh (1–2)              BA / Solution consultant
    Key user Marketing (1)                 Admin/Developer CRM
    Key user Khoá ngắn hạn (1)             Integration engineer (khi cần)
+                                          Product Manager CRM + Tech lead sản phẩm
+                                          (Product Council, doc 15 §7)
    Đầu mối Kế toán · Đầu mối IT           Trainer
    Admin CRM tương lai (bắt buộc)
 ```
@@ -61,6 +63,11 @@ R = Thực hiện · A = Chịu trách nhiệm cuối (chỉ 1) · C = Tham vấ
 | Quyết định go-live (`KG-3`) | A | R | R | C | C | C | I | C |
 | Hypercare & bàn giao (doc 14) | I | C | A | C | R | C | I | R |
 | Quyết định thay đổi phạm vi lớn | A | R | R | C | C | I | I | I |
+| Fit-gap & Gap register (doc 15) | I | C | C | R | C | R | I | C |
+| Quyết định vị trí gap L1/L2/L3 & slot roadmap | C | C | C | C | I | I | I | I |
+| Phát triển tính năng sản phẩm | I | I | C | C | C | C | I | I |
+
+> Hai dòng cuối do **Product Manager CRM** chịu trách nhiệm (A), đội sản phẩm thực hiện (R). Cột riêng không được thêm vì Product Council là cơ chế của chủ sản phẩm, không phải vai trò trong đội dự án.
 
 ## 4. Nhịp điều hành (Governance cadence)
 

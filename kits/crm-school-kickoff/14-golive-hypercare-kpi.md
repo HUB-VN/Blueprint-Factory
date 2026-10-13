@@ -43,7 +43,7 @@ Hành động: chuyển form/kênh lỗi về đích cũ (email/Sheet) — **kh�
 | 2 | Kênh hỏi đáp ≤ 2 giờ | Hằng ngày | Adoption từng TVV; tinh chỉnh quy tắc |
 | 3–4 | Kênh hỏi đáp ≤ 4 giờ | 2 lần/tuần | Báo cáo, chất lượng dữ liệu, chuyển giao cho admin trường |
 
-**Phân loại yêu cầu trong hypercare:** Lỗi (sửa ngay theo mức độ) · Hướng dẫn (trả lời + bổ sung FAQ) · Yêu cầu mới (ghi CR — doc 08 §4, không làm "tiện tay").
+**Phân loại yêu cầu trong hypercare:** Lỗi (sửa ngay theo mức độ; lỗi của tính năng sản phẩm chuyển đội sản phẩm theo SLA hỗ trợ) · Hướng dẫn (trả lời + bổ sung FAQ) · Yêu cầu mới (ghi vào Gap register và đi qua Product Council theo doc 15 §3, §7; nếu là L3 thì thành CR ở doc 08 §4; không làm "tiện tay").
 
 **Theo dõi adoption hằng ngày** (dashboard nội bộ dự án): số người đăng nhập/ngày; số cuộc gọi được ghi/TVV; task quá hạn/TVV; % lead mới có liên hệ trong SLA; lead còn đi vào Excel/Zalo cá nhân (hỏi trực tiếp ở họp). TVV có chỉ số thấp → kèm cặp 1–1, **không** báo cáo lên Ban giám hiệu trong 2 tuần đầu.
 
@@ -66,6 +66,8 @@ Hành động: chuyển form/kênh lỗi về đích cũ (email/Sheet) — **kh�
 | Hằng tháng | Rà người dùng/phân quyền; dữ liệu trùng; consent bị rút đã xử lý; picklist nguồn mới | Admin CRM |
 | Mỗi đợt tuyển sinh | Tạo Campaign theo cấu trúc 3 cấp; cập nhật học phí/ưu đãi niêm yết theo khối; cập nhật ngày công bố kết quả các kỳ tuyển sinh (AU-11); cập nhật Sức chứa | Marketing + Admin + Trưởng TS |
 | Mỗi quý | Rà taxonomy nguồn: kênh mới, kênh không còn dùng (khám phá lặp lại, doc 12 §1.1 K7) | Marketing + Admin |
+| Mỗi release sản phẩm | Đọc release note; kiểm tra tính năng mới có cần bật cho trường không; **không bật thay đổi lớn trong vùng cấm mùa vụ** | Admin CRM + Product Manager |
+| Hằng quý | Nhận roadmap từ Product Manager; gửi danh sách yêu cầu cải tiến đã ưu tiên | PO + Admin CRM |
 | Hằng năm (sau mùa) | Hiệu chỉnh xác suất stage & trọng số chấm điểm bằng dữ liệu thật; chạy chính sách lưu trữ `P-07`; review lý do thua | PO + Marketing + Admin |
 
 ## 4. Định nghĩa KPI (dùng thống nhất cho mọi dashboard)
@@ -118,6 +120,6 @@ Hành động: chuyển form/kênh lỗi về đích cũ (email/Sheet) — **kh�
 |---|---|---|---|
 | D+30 | Hệ thống có được dùng không? Lỗi gì còn tồn? **Xem lại D-02** (định nghĩa lead) bằng dữ liệu | PO, Marketing, PM | Điều chỉnh quy tắc; quyết định `KG-4` |
 | D+60 | OBJ-1, OBJ-3, OBJ-4 đang ở đâu? Dữ liệu còn nằm ngoài CRM không? | SteerCo | Kế hoạch cải thiện |
-| D+90 / hết mùa | OBJ-1..OBJ-5 so với mục tiêu; bài học; phạm vi giai đoạn 2 (doc 03 §4.3) | SteerCo | Báo cáo kết thúc dự án + đề xuất giai đoạn 2 |
+| D+90 / hết mùa | OBJ-1..OBJ-5 so với mục tiêu; bài học; phạm vi giai đoạn 2 (doc 03 §4.4) | SteerCo | Báo cáo kết thúc dự án + đề xuất giai đoạn 2 |
 
-**Mẫu báo cáo kết thúc dự án (1–2 trang):** mục tiêu vs. thực tế (OBJ-1..5) · sản phẩm bàn giao DL-1..DL-7 · quyết định quan trọng & lệch chuẩn (DV-xx) · rủi ro còn mở chuyển cho vận hành · 5 bài học · đề xuất giai đoạn 2 kèm ước tính.
+**Mẫu báo cáo kết thúc dự án (1–2 trang):** mục tiêu vs. thực tế (OBJ-1..5) · sản phẩm bàn giao DL-1..DL-8 · quyết định quan trọng & lệch chuẩn (DV-xx) · tình trạng Gap register (đã phát hành / workaround / chuyển giai đoạn 2) · bài học đưa về gói ngành giáo dục · rủi ro còn mở chuyển cho vận hành · 5 bài học · đề xuất giai đoạn 2 kèm ước tính.

@@ -9,11 +9,12 @@
 
 | Sprint | Tuần | Trọng tâm | Đầu ra chính | Gate |
 |---|---|---|---|---|
-| Sprint 0 — Thiết kế & khám phá | 1–2 | **Workshop khám phá Marketing** (doc 12 §1, K3–K5); workshop thiết kế: mô hình dữ liệu, pipeline theo loại tuyển sinh, sức chứa, quy tắc, tích hợp, báo cáo | Taxonomy D-09 + Solution Design (doc 10) ký duyệt | `KG-1` |
+| Sprint 0 — Thiết kế & khám phá | 1–2 | **Fit-gap chi tiết bằng CRP** + Product Council phân loại gap (doc 15 bước FG-4..FG-6); **workshop khám phá Marketing** (doc 12 §1, K3–K5); workshop thiết kế: mô hình dữ liệu, pipeline theo loại tuyển sinh, sức chứa, quy tắc, tích hợp, báo cáo | Taxonomy D-09 + Gap register + Solution Design (doc 10) ký duyệt | `KG-1` |
 | Sprint 1 — Nền tảng | 3–4 | Đối tượng Household/Contact/Opportunity/Product/Campaign; phân quyền; pipeline `LN-DH`; bảng Sức chứa theo khối/lớp; nạp danh mục (trường nguồn, chương trình, khối) | Sandbox chạy được `PH-1`→`PH-3` cơ bản; demo cuối sprint | |
 | Sprint 2 — Thu lead & Marketing | 5–6 | Tích hợp các điểm vào giai đoạn 1 theo D-09 (mẫu A–D, doc 10 §6.2); taxonomy nguồn, cấu trúc Campaign, UTM; gán lead; SLA & cảnh báo | Lead từ mọi kênh vào đúng người trong ≤ [ĐIỀN] phút | |
 | Sprint 3 — Sự kiện & khoá ngắn hạn | 7–8 | Pipeline `LN-NH`, sĩ số, danh sách chờ; pipeline `LN-SK` như sản phẩm: sức chứa, loại vé, thanh toán, nhắc, check-in QR, hoàn thành, follow-up; chuỗi nurture theo thẻ thiết kế | Diễn tập 1 sự kiện giả lập end-to-end | |
 | Sprint 4 — Phê duyệt, báo cáo, dữ liệu | 9–10 | Duyệt học bổng (`P-08`); dashboard; chuyển đổi dữ liệu thử; tích hợp kế toán/SIS (giai đoạn 1: file) | Dữ liệu thử đã đối soát; dashboard có số | |
+| Song song S0–S4 — Luồng sản phẩm | 1–10 | Đặc tả gap (doc 15 §6) → build → QA → staging; demo trên sandbox của trường dưới feature flag mỗi sprint; feature freeze [ĐIỀN] | Bản build Dev-complete | `KG-D` (cuối tuần 10) |
 | UAT & Đào tạo | 11 | UAT 2 vòng (doc 13); đào tạo theo vai trò | Biên bản UAT | `KG-2` |
 | Cutover & Go-live | 12 | Nạp dữ liệu chính thức, bật tích hợp, tắt nguồn cũ (doc 14) | Hệ thống chạy thật | `KG-3` |
 | Hypercare | 13–16 | Hỗ trợ tại chỗ, sửa lỗi, tinh chỉnh | Báo cáo hypercare | `KG-4` |
@@ -41,11 +42,14 @@
 | W13 | Chuyển đổi dữ liệu thử + đối soát | 4 | Data lead | doc 05 |
 | W14 | Tích hợp kế toán / SIS (file hoặc API) | 4 | Integration eng. | DP-05 |
 | W15 | Tài liệu đào tạo & video ngắn | 3–4 | Trainer | Cấu hình ổn định |
-| W16 | UAT | 5 (tuần 11) | BA + key users | W3–W14 |
+| W15b | Phát triển gap đã cam kết (mỗi GAP-xx là một hạng mục con) | 0–4 | Đội sản phẩm | Gap register, `KG-1` |
+| W16 | UAT | 5 (tuần 11) | BA + key users | W3–W14, W15b (`KG-D`) |
 | W17 | Cutover & go-live | 6 (tuần 12) | PM + Admin | `KG-2` |
 | W18 | Hypercare & bàn giao | 13–16 | Admin + PM | `KG-3` |
 
 ## 3. Định nghĩa "Hoàn thành" (Definition of Done) cho mỗi hạng mục cấu hình
+
+*(Tính năng sản phẩm mới có Definition of Done riêng của đội sản phẩm, cộng với tiêu chí gate `KG-D` ở doc 15 §9.)*
 
 - [ ] Có trong Solution Design (doc 10) hoặc CR đã duyệt
 - [ ] Đã cấu hình trên sandbox, có ghi chú trích ID (ví dụ "Rule gán lead — D-05, `CC-A`")
@@ -61,6 +65,7 @@
 | BA / Consultant | | |
 | Admin / Developer CRM | | |
 | Integration engineer | | |
+| Product Manager CRM / đội sản phẩm | | Theo số gap phát triển đã cam kết |
 | Trainer | | |
 | Project Owner (trường) | | ≥ 40% suốt dự án; 80% ở UAT & go-live |
 | Key users (trường) | | 4h/tuần build · 2 ngày UAT · có mặt cả tuần go-live |
@@ -70,4 +75,4 @@
 
 - **Burn-up theo hạng mục W1–W18**, không theo giờ công.
 - **Đèn tín hiệu tuần** (doc 04 §4): Đỏ khi bất kỳ (a) mốc gate trễ > 1 tuần, (b) RAID mức Cao chưa có biện pháp, (c) phụ thuộc DP-xx trễ ảnh hưởng sprint kế tiếp.
-- **Quy tắc bảo vệ ngày go-live:** khi trễ, thứ tự hy sinh là: (1) dashboard nâng cao → (2) chuỗi nurture thứ cấp → (3) `LN-NH` → (4) phê duyệt học bổng tự động (dùng phê duyệt thủ công tạm). **Không bao giờ** hy sinh: thu lead mọi kênh, gán lead, nhắc việc, consent.
+- **Quy tắc bảo vệ ngày go-live:** khi trễ, thứ tự hy sinh là: (1) dashboard nâng cao → (2) chuỗi nurture thứ cấp → (3) `LN-NH` → (4) phê duyệt học bổng tự động (dùng phê duyệt thủ công tạm). Gap phát triển chưa kịp thì xử lý theo `KG-D` (doc 15 §9): workaround, phát hành sau ngoài vùng cấm. **Không bao giờ** hy sinh: thu lead mọi kênh, gán lead, nhắc việc, consent.

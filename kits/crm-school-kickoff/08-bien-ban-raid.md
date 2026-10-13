@@ -37,7 +37,8 @@ Thành phần: [danh sách]   Vắng: [danh sách]
 | D-07 | | Kênh liên lạc chính thức … | | | | doc 11 §5 | |
 | D-08 | | SLA … | | | | doc 10 §4, doc 11 §2 | |
 | D-09 | | Taxonomy nguồn, cấu trúc chiến dịch, UTM, điểm vào giai đoạn 1 (kết quả khám phá doc 12 §1) | | | Trưởng Marketing + Trưởng TS | doc 10 §6.2, doc 12 §2–§3 | Hằng tháng (K7) |
-| D-10+ | | *(quyết định phát sinh trong dự án)* | | | | | |
+| D-10 | | Nguyên tắc xử lý gap & nâng cấp sản phẩm | | | Sponsor + Product Manager CRM | doc 03 §4.3, doc 15 | `KG-1` |
+| D-11+ | | *(quyết định phát sinh, gồm quyết định cho từng GAP-xx)* | | | | | |
 
 **Quy tắc:** quyết định thay đổi → **không sửa dòng cũ**; thêm dòng mới "D-xx thay thế D-yy" (giống quy tắc ID không tái sử dụng của BP-01).
 
@@ -61,6 +62,9 @@ Thang: Khả năng (K) và Tác động (T) 1–3; Mức = K × T (≥ 6 = Cao).
 | RK-10 | Yêu cầu phình to (scope creep) từ nhiều bộ phận | 3 | 2 | 6 | Quy trình CR (doc 03 §9); danh sách giai đoạn 2 công khai | PM | |
 | RK-12 | Khám phá kênh phát hiện nhiều điểm vào hơn dự kiến → phình phạm vi tích hợp | 3 | 2 | 6 | Giới hạn số điểm vào giai đoạn 1 trong charter; điểm vào còn lại dùng mẫu C/D (doc 10 §6.2) | PM | |
 | RK-13 | Không có dữ liệu sức chứa theo khối/lớp đáng tin → nhận chuyển trường sai | 2 | 3 | 6 | Bảng Sức chứa có chủ sở hữu rõ, đồng bộ từ SIS (IN-08) | Project Owner | |
+| RK-14 | Gap phải phát triển không kịp trước UAT/go-live | 2 | 3 | 6 | Gate `KG-D`; feature freeze; workaround cho mọi gap; lịch mùa vụ thắng lịch roadmap (doc 15 §9) | Product Manager | |
+| RK-15 | Tính năng mới cho trường làm ảnh hưởng khách hàng khác của sản phẩm | 1 | 3 | 3 | Feature flag; hồi quy đa khách hàng (doc 15 §8) | Tech lead sản phẩm | |
+| RK-16 | Roadmap sản phẩm đổi ưu tiên, gap của trường bị đẩy lùi | 2 | 2 | 4 | Khoá slot roadmap tại `KG-1`; đổi slot phải qua SteerCo | Product Manager | |
 | RK-11 | Nhân sự tư vấn biến động (thời vụ, cộng tác viên mùa cao điểm) | 2 | 2 | 4 | Tài liệu đào tạo tự học + license cho nhân sự thời vụ (D-xx) | Project Owner | |
 
 ### 3.2 Giả định (Assumptions)
@@ -90,3 +94,7 @@ Thang: Khả năng (K) và Tác động (T) 1–3; Mức = K × T (≥ 6 = Cao).
 | CR | Ngày | Người đề xuất | Mô tả | Lý do | Ước tính (ngày công) | Ảnh hưởng mốc | Cấp duyệt | Quyết định | Ngày quyết |
 |---|---|---|---|---|---|---|---|---|---|
 | CR-01 | | | | | | Có/Không | PO / SteerCo | Duyệt / Từ chối / Giai đoạn 2 | |
+
+## 5. Gap register
+
+Dùng mẫu ở doc 15 §5. Gap register là sổ riêng nhưng được rà ở mỗi họp tuần cùng RAID. Mỗi quyết định về một GAP-xx được ghi thành một dòng D-xx trong Decision log.

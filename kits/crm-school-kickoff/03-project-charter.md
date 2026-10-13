@@ -66,7 +66,21 @@
 - Sản xuất nội dung marketing (bài viết, video) — chỉ cấu hình chuỗi gửi
 - [ĐIỀN: hạng mục khác trường đã hỏi nhưng loại trừ]
 
-### 4.3 Giai đoạn 2 (đề xuất, chưa cam kết)
+### 4.3 Gap & nâng cấp sản phẩm (doc 15)
+
+Đơn vị triển khai là chủ sản phẩm CRM, nên một số yêu cầu của trường có thể được đáp ứng bằng tính năng mới của sản phẩm.
+
+| Mục | Nội dung |
+|---|---|
+| Gap đã biết từ fit-gap sơ bộ | GAP-01..GAP-xx [ĐIỀN, đính kèm danh sách] |
+| Gap nằm trong phạm vi và giá hợp đồng | [ĐIỀN mã gap] |
+| Nguyên tắc chi phí | L1 sản phẩm lõi: chủ sản phẩm đầu tư · L2 gói ngành giáo dục: [ĐIỀN, ví dụ chủ sản phẩm đầu tư hoặc đồng tài trợ] · L3 riêng của trường: Change Request (§9) |
+| Số gap phát triển tối đa ở giai đoạn 1 | [ĐIỀN]; vượt thì vào giai đoạn 2 hoặc SteerCo duyệt |
+| Cam kết thời gian | Gap "bắt buộc go-live" được khoá slot roadmap tại `KG-1`; lịch mùa vụ thắng lịch roadmap (doc 15 §1) |
+| Quyền sở hữu trí tuệ | Tính năng L1/L2 thuộc sản phẩm và dùng cho khách hàng khác; L3 [ĐIỀN theo hợp đồng] |
+| Bảo trì sau go-live | Tính năng L1/L2 theo chính sách sản phẩm; L3 theo hợp đồng bảo trì [ĐIỀN] |
+
+### 4.4 Giai đoạn 2 (đề xuất, chưa cam kết)
 
 Tích hợp 2 chiều với SIS; cổng phụ huynh (parent portal); helpdesk phụ huynh hiện hữu (`G-5` đầy đủ); chấm điểm lead bằng AI (`T-9`); chương trình giới thiệu (referral) có thưởng.
 
@@ -81,6 +95,7 @@ Tích hợp 2 chiều với SIS; cổng phụ huynh (parent portal); helpdesk ph
 | DL-5 | Playbook Sales & Marketing (doc 11, 12 bản hoàn chỉnh) | Ban giám hiệu duyệt | `KG-3` |
 | DL-6 | Đào tạo | ≥ [ĐIỀN]% người dùng đạt bài kiểm tra | `KG-3` |
 | DL-7 | Báo cáo hypercare & tài liệu vận hành | Admin CRM trường tự làm được các tác vụ ở doc 14 §5 | `KG-4` |
+| DL-8 | Tính năng sản phẩm cho các gap đã cam kết (doc 15) | Tiêu chí nghiệm thu trong đặc tả đạt; có release note | `KG-D`, `KG-2` |
 
 ## 6. Mốc chính (Milestones)
 
@@ -89,6 +104,7 @@ Tích hợp 2 chiều với SIS; cổng phụ huynh (parent portal); helpdesk ph
 | M0 Kickoff | [ĐIỀN] | Đạt `KG-0` |
 | M1 Duyệt thiết kế | Kickoff + [ĐIỀN] tuần | `KG-1` |
 | M2 Hoàn tất cấu hình & tích hợp | [ĐIỀN] | |
+| M2b Dev-complete các gap cam kết | [ĐIỀN] | `KG-D` |
 | M3 UAT đạt | [ĐIỀN] | `KG-2` |
 | M4 Go-live | [ĐIỀN] | `KG-3`; **ngoài vùng cấm** doc 02 |
 | M5 Thoát hypercare | [ĐIỀN] | `KG-4` |
@@ -106,7 +122,7 @@ Tích hợp 2 chiều với SIS; cổng phụ huynh (parent portal); helpdesk ph
 
 ## 8. Tiêu chí thành công & điều kiện kết thúc dự án
 
-Dự án kết thúc khi: `KG-4` đạt; DL-1..DL-7 được chấp nhận; OBJ-5 đạt; OBJ-1..OBJ-4 **có số đo thật** trên dashboard (đạt hay chưa đạt mục tiêu được đánh giá ở review 90 ngày, không chặn nghiệm thu).
+Dự án kết thúc khi: `KG-4` đạt; DL-1..DL-8 được chấp nhận; OBJ-5 đạt; OBJ-1..OBJ-4 **có số đo thật** trên dashboard (đạt hay chưa đạt mục tiêu được đánh giá ở review 90 ngày, không chặn nghiệm thu).
 
 ## 9. Quản lý thay đổi phạm vi (Change Request)
 

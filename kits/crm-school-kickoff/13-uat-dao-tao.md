@@ -42,6 +42,9 @@
 | UAT-20 | Xuất danh sách nhập học theo mẫu SIS | Major | Học vụ / IT | IN-08 |
 | UAT-21 | TVV nghỉ việc → Trưởng TS chuyển hàng loạt hồ sơ, lịch sử giữ nguyên | Major | Trưởng TS | doc 10 §8 |
 | UAT-22 | Đối soát dữ liệu chuyển đổi: mẫu ngẫu nhiên [ĐIỀN] bản ghi khớp nguồn | Critical | Key users | doc 05 §6 |
+| UAT-G-xx | **Mỗi GAP-xx đã phát triển** có ít nhất một kịch bản, dựng từ tiêu chí nghiệm thu AC-x trong đặc tả (doc 15 §6). Mức theo ưu tiên của gap | Theo gap | Key users | doc 15 |
+| UAT-W-xx | **Mỗi gap dùng workaround** có kịch bản kiểm tra workaround chạy được và người thao tác đã được hướng dẫn | Major | Key users | doc 15 §5 |
+| UAT-R | Hồi quy: chạy lại UAT-01..UAT-22 trên bản build có tính năng mới (feature flag BẬT) | Critical | QA + key users | doc 15 §8 |
 
 **Mẫu ghi kết quả:**
 
@@ -74,6 +77,7 @@
 | Critical mở | __ |
 | Major mở (kèm kế hoạch) | __ |
 | Pháp chế duyệt privacy notice & mẫu consent (DP-06) | ☐ |
+| `KG-D` đã đạt hoặc có quyết định workaround cho mọi gap chưa xong | ☐ |
 | % người dùng đạt bài kiểm tra | __% (mục tiêu [ĐIỀN]%) |
 | Quyết định | ☐ Đạt ☐ Đạt có điều kiện ☐ UAT vòng 2 |
 | Ký | Project Owner ____ · Key users ____ · PM ____ |

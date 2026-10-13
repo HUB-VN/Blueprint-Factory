@@ -161,3 +161,4 @@
 | Mâu thuẫn phát hiện được | Ví dụ: Marketing nói 4.000 lead, Tuyển sinh nói 2.500 — do định nghĩa "lead" khác nhau → đưa vào quyết định D-02 |
 | Câu hỏi còn mở | Đưa vào agenda kickoff (doc 07) |
 | Rủi ro sơ bộ | Đưa vào RAID (doc 08) |
+| **Gap sơ bộ** | Chọn 8–10 kịch bản then chốt từ các buổi phỏng vấn, demo trên sản phẩm chuẩn, đánh dấu gap lớn kèm ước tính thô S/M/L (doc 15 §4 bước FG-1). Đưa vào charter **trước khi ký** |

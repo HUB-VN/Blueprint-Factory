@@ -1,6 +1,6 @@
 # KIT-01 · Bộ tài liệu Kickoff triển khai CRM — Trường tư thục THCS & THPT
 
-**Phiên bản:** 1.1.0 · 10/2026 · áp dụng blueprint [BP-01 FlowX CRM](../../packs/crm-blueprint-pack/)
+**Phiên bản:** 1.2.0 · 10/2026 · áp dụng blueprint [BP-01 FlowX CRM](../../packs/crm-blueprint-pack/)
 **Đối tượng:** đội triển khai CRM (PM, BA, solution consultant, admin CRM) và phía trường (Ban giám hiệu, Phòng Tuyển sinh, Marketing, Kế toán, IT)
 **Loại trường:** trường tư thục THCS (lớp 6–9), THPT (lớp 10–12), hoặc liên cấp có cả hai
 **Phạm vi nghiệp vụ:** Sales (tư vấn tuyển sinh) + Marketing cho 3 dòng sản phẩm, **cả 3 đều là sản phẩm có pipeline và có thể có doanh thu**:
@@ -32,6 +32,10 @@
  └──────────────────────────────────────────────┘   └───────────────────────────────────────────────┘
                          ▲                                              │
                          └──────────── 07 = điểm nối hai nửa ───────────┘
+ ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+ │ 15 Fit-Gap & Nâng cấp sản phẩm CRM — chạy xuyên suốt: fit-gap sơ bộ → CRP → Gap register →        │
+ │    phát triển song song → KG-D Dev-complete → phát hành → cải tiến sau go-live                    │
+ └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 | # | Tài liệu | Giai đoạn | Chủ trì | Người duyệt | Đầu ra |
@@ -42,7 +46,7 @@
 | 04 | [Stakeholder · RACI · Governance](04-raci-governance.md) | Trước | PM | Sponsor | Ma trận RACI, lịch họp |
 | 05 | [Data readiness & tuân thủ](05-data-readiness.md) | Trước | Data lead + Pháp chế | IT trường | Kiểm kê dữ liệu, kế hoạch consent |
 | 06 | [Checklist sẵn sàng kickoff](06-pre-kickoff-checklist.md) | Trước | PM | Sponsor | Quyết định Go/No-go `KG-0` |
-| 07 | [Agenda & kịch bản Kickoff](07-kickoff-agenda.md) | Nối | PM | — | Buổi kickoff, các quyết định D-01..D-09 |
+| 07 | [Agenda & kịch bản Kickoff](07-kickoff-agenda.md) | Nối | PM | — | Buổi kickoff, các quyết định D-01..D-10 |
 | 08 | [Biên bản · Decision log · RAID](08-bien-ban-raid.md) | Sau | PM | Sponsor | Biên bản trong 24h, RAID log sống |
 | 09 | [Kế hoạch triển khai](09-ke-hoach-trien-khai.md) | Sau | PM | Steering Committee | Kế hoạch sprint + gate KG-1..KG-4 |
 | 10 | [Thiết kế giải pháp CRM](10-thiet-ke-giai-phap.md) | Sau | Solution consultant | Trưởng TS + Marketing | Solution Design ký duyệt (`KG-1`) |
@@ -50,6 +54,7 @@
 | 12 | [Playbook Marketing & Sự kiện](12-playbook-marketing-su-kien.md) | Sau | Trưởng Marketing | Ban giám hiệu | Workshop khám phá kênh/nguồn, taxonomy nguồn & chiến dịch của trường, vận hành sự kiện như sản phẩm |
 | 13 | [UAT & Đào tạo](13-uat-dao-tao.md) | Sau | QA/BA + Trainer | Key users | Biên bản UAT (`KG-2`), học viên đạt |
 | 14 | [Go-live · Hypercare · KPI](14-golive-hypercare-kpi.md) | Sau | PM + Admin CRM | Sponsor | Cutover (`KG-3`), bàn giao (`KG-4`) |
+| 15 | [Fit-Gap & Nâng cấp sản phẩm](15-fit-gap-nang-cap-san-pham.md) | Xuyên suốt | BA + Product Manager CRM | Product Council / SteerCo | Gap register, đặc tả tính năng, gate `KG-D`, backlog cải tiến |
 
 ---
 
@@ -60,7 +65,8 @@ Theo tinh thần FlowX: gate là **decision table**, không phải cảm tính.
 | Gate | Câu hỏi | Ai quyết | Đạt → | Không đạt → |
 |---|---|---|---|---|
 | `KG-0` | Sẵn sàng kickoff? (doc 06) | Sponsor + PM | Tổ chức kickoff | Dời kickoff, xử lý mục đỏ |
-| `KG-1` | Thiết kế giải pháp được duyệt? (doc 10) | Trưởng TS + Marketing + PM | Bắt đầu build/cấu hình | Vòng thiết kế bổ sung (tối đa 2 vòng, sau đó escalate SteerCo) |
+| `KG-1` | Thiết kế giải pháp **và Gap register** được duyệt? (doc 10, doc 15) | Trưởng TS + Marketing + PM | Bắt đầu build/cấu hình | Vòng thiết kế bổ sung (tối đa 2 vòng, sau đó escalate SteerCo) |
+| `KG-D` | Dev-complete? Mọi gap "bắt buộc go-live" đã xong trên staging (doc 15 §9) | Product Manager + PM | Vào UAT với tính năng mới | UAT bằng workaround, tính năng phát hành sau ngoài vùng cấm; hoặc SteerCo rút phạm vi |
 | `KG-2` | UAT đạt? (doc 13) | Key users + PM | Chuẩn bị cutover | Sửa lỗi, UAT vòng 2 |
 | `KG-3` | Go-live? (doc 14) | Sponsor | Cutover | Lùi ngày, **nhưng không lùi qua mốc mùa vụ đã chốt ở doc 02** — nếu chạm mốc, go-live phạm vi rút gọn (MVP) |
 | `KG-4` | Thoát hypercare? (doc 14) | Sponsor + Admin CRM trường | Bàn giao vận hành | Gia hạn hypercare 2 tuần |
