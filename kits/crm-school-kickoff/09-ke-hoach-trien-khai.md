@@ -1,7 +1,7 @@
 # 09 · Kế hoạch triển khai (theo mùa tuyển sinh)
 
 **Giai đoạn:** Sau kickoff · **Chủ trì:** PM · **Duyệt:** Steering Committee
-**Nguyên tắc lập lịch:** đếm **ngược từ mốc mùa vụ**, không đếm xuôi từ kickoff. Ngày go-live do doc 02 §1 quyết định; phạm vi co giãn để vừa ngày đó.
+**Nguyên tắc lập lịch:** đếm **ngược từ mốc mùa vụ**, không đếm xuôi từ kickoff. Ngày go-live do doc 02 §2 quyết định; phạm vi co giãn để vừa ngày đó.
 
 ---
 
@@ -9,10 +9,10 @@
 
 | Sprint | Tuần | Trọng tâm | Đầu ra chính | Gate |
 |---|---|---|---|---|
-| Sprint 0 — Thiết kế | 1–2 | Workshop thiết kế chi tiết: mô hình dữ liệu, pipeline, quy tắc, tích hợp, báo cáo | Solution Design (doc 10) ký duyệt | `KG-1` |
-| Sprint 1 — Nền tảng | 3–4 | Đối tượng Household/Contact/Opportunity/Product/Campaign; phân quyền; pipeline `LN-DH`; nạp danh mục (trường THCS, chương trình) | Sandbox chạy được `PH-1`→`PH-3` cơ bản; demo cuối sprint | |
-| Sprint 2 — Thu lead & Marketing | 5–6 | Form web, Meta Lead Ads, Zalo OA, hotline; quy tắc nguồn/UTM; gán lead; SLA & cảnh báo | Lead từ mọi kênh vào đúng người trong ≤ [ĐIỀN] phút | |
-| Sprint 3 — Sự kiện & khoá ngắn hạn | 7–8 | Pipeline `LN-NH`, sĩ số, danh sách chờ; module sự kiện: đăng ký, nhắc, check-in QR, follow-up; chuỗi nurture | Diễn tập 1 sự kiện giả lập end-to-end | |
+| Sprint 0 — Thiết kế & khám phá | 1–2 | **Workshop khám phá Marketing** (doc 12 §1, K3–K5); workshop thiết kế: mô hình dữ liệu, pipeline theo loại tuyển sinh, sức chứa, quy tắc, tích hợp, báo cáo | Taxonomy D-09 + Solution Design (doc 10) ký duyệt | `KG-1` |
+| Sprint 1 — Nền tảng | 3–4 | Đối tượng Household/Contact/Opportunity/Product/Campaign; phân quyền; pipeline `LN-DH`; bảng Sức chứa theo khối/lớp; nạp danh mục (trường nguồn, chương trình, khối) | Sandbox chạy được `PH-1`→`PH-3` cơ bản; demo cuối sprint | |
+| Sprint 2 — Thu lead & Marketing | 5–6 | Tích hợp các điểm vào giai đoạn 1 theo D-09 (mẫu A–D, doc 10 §6.2); taxonomy nguồn, cấu trúc Campaign, UTM; gán lead; SLA & cảnh báo | Lead từ mọi kênh vào đúng người trong ≤ [ĐIỀN] phút | |
+| Sprint 3 — Sự kiện & khoá ngắn hạn | 7–8 | Pipeline `LN-NH`, sĩ số, danh sách chờ; pipeline `LN-SK` như sản phẩm: sức chứa, loại vé, thanh toán, nhắc, check-in QR, hoàn thành, follow-up; chuỗi nurture theo thẻ thiết kế | Diễn tập 1 sự kiện giả lập end-to-end | |
 | Sprint 4 — Phê duyệt, báo cáo, dữ liệu | 9–10 | Duyệt học bổng (`P-08`); dashboard; chuyển đổi dữ liệu thử; tích hợp kế toán/SIS (giai đoạn 1: file) | Dữ liệu thử đã đối soát; dashboard có số | |
 | UAT & Đào tạo | 11 | UAT 2 vòng (doc 13); đào tạo theo vai trò | Biên bản UAT | `KG-2` |
 | Cutover & Go-live | 12 | Nạp dữ liệu chính thức, bật tích hợp, tắt nguồn cũ (doc 14) | Hệ thống chạy thật | `KG-3` |
@@ -28,13 +28,15 @@
 | W2 | Thiết kế quy tắc tự động hoá & SLA | 0 | Consultant | D-02, D-08 |
 | W3 | Cấu hình đối tượng, trường, layout | 1 | Admin/Dev | W1 |
 | W4 | Pipeline `LN-DH` + lý do thua | 1 | Admin/Dev | W1 |
-| W5 | Tích hợp thu lead (web, Meta, Zalo OA, hotline) | 2 | Integration eng. | DP-01, DP-03 |
+| W0 | Workshop khám phá kênh/nguồn/chiến dịch + truy dấu lead thật | 0 | BA + Marketing | DP-02 |
+| W5 | Tích hợp điểm vào lead giai đoạn 1 (danh sách từ D-09) | 2 | Integration eng. | D-09, DP-01, DP-03 |
 | W6 | Quy tắc gán lead, task, cảnh báo SLA | 2 | Admin/Dev | W2 |
-| W7 | Taxonomy nguồn + UTM + báo cáo kênh | 2 | Consultant + Marketing | — |
+| W7 | Cấu hình taxonomy nguồn + Campaign 3 cấp + UTM + báo cáo kênh | 2 | Consultant + Marketing | D-09 |
 | W8 | Pipeline `LN-NH` + sĩ số + danh sách chờ | 3 | Admin/Dev | W3 |
-| W9 | Module sự kiện + check-in QR + nhắc lịch | 3 | Admin/Dev | DP-01, DP-02 |
+| W9 | Pipeline `LN-SK` + sức chứa + vé & thanh toán + check-in QR + nhắc lịch | 3 | Admin/Dev | DP-01, IN-10 |
 | W10 | Chuỗi nurture (số lượng theo phạm vi) | 3 | Marketing + Admin | Nội dung từ Marketing |
-| W11 | Quy trình phê duyệt học bổng | 4 | Admin/Dev | D-06 |
+| W11 | Quy trình phê duyệt học bổng/ưu đãi | 4 | Admin/Dev | D-06 |
+| W11b | Bảng Sức chứa theo khối/lớp + đồng bộ từ SIS + danh sách chờ | 1–4 | Admin/Dev | IN-08 |
 | W12 | Dashboard & báo cáo | 4 | Consultant | W4–W9 |
 | W13 | Chuyển đổi dữ liệu thử + đối soát | 4 | Data lead | doc 05 |
 | W14 | Tích hợp kế toán / SIS (file hoặc API) | 4 | Integration eng. | DP-05 |

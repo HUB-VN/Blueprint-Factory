@@ -37,7 +37,7 @@ Kits apply a blueprint to a specific industry and project phase — practical do
 
 | ID | Kit | Applies | Status |
 |---|---|---|---|
-| KIT-01 | **CRM Kickoff Kit — Private High Schools** (Vietnamese): 14 pre-/post-kickoff documents for deploying a sales & marketing CRM covering long-term enrollment, short courses and events — discovery, admissions-season calendar, charter, RACI, data & child-data compliance, kickoff agenda, RAID, implementation plan, solution design, sales & marketing playbooks, UAT, go-live & KPIs | BP-01 | ✅ v1.0.0 · [`kits/crm-school-kickoff/`](kits/crm-school-kickoff/) |
+| KIT-01 | **CRM Kickoff Kit — Private Secondary Schools (grades 6–12)** (Vietnamese): 14 pre-/post-kickoff documents for deploying a sales & marketing CRM covering enrollment into any grade (entry grades, transfers, internal progression, re-enrollment), short courses, and events/training programs run as products. Marketing channels, lead sources and campaigns are captured through a discovery workshop rather than prescribed | BP-01 | ✅ v1.1.0 · [`kits/crm-school-kickoff/`](kits/crm-school-kickoff/) |
 
 ## 🚀 Use with a coding agent (30 seconds)
 

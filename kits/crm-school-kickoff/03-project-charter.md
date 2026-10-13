@@ -16,7 +16,7 @@
 | Đầu mối phía trường (Project Owner) | [ĐIỀN — thường là Trưởng phòng Tuyển sinh] |
 | Nền tảng CRM | [ĐIỀN — đã chọn / đang đánh giá; nếu đang đánh giá, xem scorecard build-vs-buy ở `packs/crm-blueprint-pack/agent-guides/business-agent.md`] |
 | Ngày kickoff | [ĐIỀN] |
-| Ngày go-live mục tiêu | [ĐIỀN — phải nằm ngoài vùng cấm go-live ở doc 02 §1] |
+| Ngày go-live mục tiêu | [ĐIỀN — phải nằm ngoài vùng cấm go-live ở doc 02 §2] |
 | Ngày kết thúc hypercare | Go-live + [ĐIỀN, khuyến nghị 30] ngày |
 
 ## 2. Bối cảnh & vấn đề
@@ -32,7 +32,7 @@
 | OBJ-1 | Không lead nào bị bỏ rơi | % lead có liên hệ đầu tiên trong SLA | [ĐIỀN] | [ĐIỀN, ví dụ ≥ 90%] | Go-live + 60 ngày |
 | OBJ-2 | Đo được hiệu quả kênh | % học sinh nhập học có nguồn gốc rõ ràng | [ĐIỀN] | [ĐIỀN] | Hết mùa tuyển sinh |
 | OBJ-3 | Sự kiện chuyển hoá thành tuyển sinh | % người tham dự được follow-up ≤ 24h | [ĐIỀN] | [ĐIỀN] | Sự kiện đầu tiên sau go-live |
-| OBJ-4 | Dữ liệu thuộc về trường | % hội thoại phụ huynh trên kênh chính thức (Zalo OA, hotline, email trường) | [ĐIỀN] | [ĐIỀN] | Go-live + 90 ngày |
+| OBJ-4 | Dữ liệu thuộc về trường | % hội thoại phụ huynh trên kênh chính thức của trường (danh sách kênh chốt ở D-07) | [ĐIỀN] | [ĐIỀN] | Go-live + 90 ngày |
 | OBJ-5 | Adoption | % tư vấn viên đăng nhập & cập nhật hằng ngày | — | [ĐIỀN, ví dụ ≥ 95%] | Go-live + 30 ngày |
 
 > Chỉ số "tăng số học sinh nhập học X%" **không** nên là mục tiêu của dự án CRM — nó phụ thuộc học phí, chất lượng, đối thủ. CRM chịu trách nhiệm về **tốc độ, độ phủ, khả năng đo** — những thứ dẫn tới tuyển sinh tốt hơn.
@@ -43,14 +43,15 @@
 
 | Nhóm | Hạng mục | Tham chiếu |
 |---|---|---|
-| Dữ liệu | Mô hình Household / Phụ huynh / Học sinh / Trường THCS nguồn / Chương trình / Sự kiện | doc 10 §2 |
+| Dữ liệu | Mô hình Household / Phụ huynh / Học sinh / Trường nguồn / Chương trình / Sự kiện / Sức chứa theo khối–lớp | doc 10 §2 |
 | Dữ liệu | Chuyển đổi dữ liệu lead & học sinh tiềm năng [ĐIỀN: số năm] gần nhất | doc 05 |
-| Sales | Pipeline `LN-DH` (DH-1..DH-7), gán lead tự động, task & nhắc việc, ghi cuộc gọi/ghi chú, lý do thua | doc 10 §3, doc 11 |
+| Sales | Pipeline `LN-DH` (DH-1..DH-7) cho các khối [ĐIỀN: 6–9 / 10–12 / 6–12] và các loại tuyển sinh [ĐIỀN theo D-04]; gán lead tự động; task & nhắc việc; ghi cuộc gọi/ghi chú; lý do thua | doc 10 §3, doc 11 |
 | Sales | Pipeline `LN-NH` (NH-1..NH-4), sĩ số, danh sách chờ | doc 10 §3 |
-| Marketing | Thu lead tự động từ [ĐIỀN: Meta Lead Ads, form web, Zalo OA…] | doc 10 §6 |
-| Marketing | Quản lý sự kiện `LN-SK`: đăng ký, nhắc lịch, check-in QR, follow-up | doc 12 |
+| Marketing | Workshop khám phá kênh/nguồn/chiến dịch; taxonomy nguồn và cấu trúc chiến dịch của trường (D-09) | doc 12 §1–§3 |
+| Marketing | Thu lead từ các điểm vào được chọn ở giai đoạn 1 trong bảng kiểm kê [ĐIỀN số lượng sau khám phá; chưa biết thì ghi ngân sách công cho tối đa N điểm vào] | doc 10 §6.2 |
+| Sản phẩm | Sự kiện & chương trình đào tạo `LN-SK` như một sản phẩm: sức chứa, loại vé (miễn phí và có phí), thanh toán, nhắc lịch, check-in QR, hoàn thành, follow-up | doc 02 §4.3, doc 12 §4 |
 | Marketing | Quy ước nguồn lead + UTM; báo cáo hiệu quả kênh | doc 12 §2 |
-| Marketing | [ĐIỀN: số] chuỗi nurture tự động | doc 12 §4 |
+| Marketing | [ĐIỀN: số] chuỗi nurture tự động, chọn từ thẻ thiết kế sau khám phá | doc 12 §5 |
 | Phê duyệt | Quy trình duyệt học bổng/ưu đãi theo ngưỡng (`P-08`, `BR-04`) | doc 10 §5 |
 | Báo cáo | [ĐIỀN: số] dashboard: Ban giám hiệu, Tuyển sinh, Marketing, Sự kiện | doc 14 §4 |
 | Tuân thủ | Consent, quyền rút đồng ý, phân quyền dữ liệu học sinh (`BR-07`, `P-05`) | doc 05 §4 |
@@ -96,11 +97,12 @@ Tích hợp 2 chiều với SIS; cổng phụ huynh (parent portal); helpdesk ph
 
 **Giả định** (nếu sai → rủi ro, ghi RAID):
 - Trường cử Project Owner dành ≥ [ĐIỀN, khuyến nghị 40]% thời gian; key user mỗi bộ phận ≥ [ĐIỀN] giờ/tuần.
-- Trường có/sẽ có Zalo OA đã xác thực và [ĐIỀN: SMS brandname] trước M2.
+- Các tài khoản kênh chính thức được chọn ở D-07/D-09 (ví dụ tài khoản nhắn tin doanh nghiệp, brandname SMS) đã sẵn sàng hoặc được đăng ký trước M2.
+- Số điểm vào lead cần tích hợp nằm trong giới hạn ở §4.1; vượt giới hạn thì đi qua Change Request (§9).
 - Dữ liệu cũ được bàn giao đúng hạn ở định dạng đã thống nhất (doc 05).
 - Phản hồi tài liệu trong ≤ [ĐIỀN] ngày làm việc; quá hạn coi như chấp thuận *(cần Sponsor đồng ý điều khoản này tại kickoff)*.
 
-**Ràng buộc:** vùng cấm go-live (doc 02 §1); ngân sách [ĐIỀN]; tuân thủ NĐ 13/2023 & Luật Bảo vệ dữ liệu cá nhân (doc 05).
+**Ràng buộc:** vùng cấm go-live (doc 02 §2); ngân sách [ĐIỀN]; tuân thủ NĐ 13/2023 & Luật Bảo vệ dữ liệu cá nhân (doc 05).
 
 ## 8. Tiêu chí thành công & điều kiện kết thúc dự án
 

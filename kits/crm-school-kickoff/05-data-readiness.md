@@ -15,15 +15,13 @@
 |---|---|---|---|---|---|---|---|
 | SRC-01 | File Excel tuyển sinh tổng | .xlsx (Drive) | Phòng TS | | | | Có |
 | SRC-02 | Excel riêng từng tư vấn viên | .xlsx cá nhân | Từng TVV | | | | Gộp vào SRC-01 trước |
-| SRC-03 | Meta Lead Ads (form) | Export CSV / Ads Manager | Marketing | | | | 12 tháng gần nhất |
-| SRC-04 | Form website | DB website / email | Marketing | | | | |
+| SRC-03.. | *Mỗi điểm vào lead trong bảng kiểm kê doc 12 §1.2 là một dòng, cấp mã khi kiểm kê* | | Marketing | | | | |
 | SRC-05 | Đăng ký sự kiện | Google Forms / Sheets | Marketing | | | | Có (lịch sử tham dự) |
-| SRC-06 | Zalo OA (người quan tâm) | Zalo OA Manager | Marketing | | | | Chỉ liên kết ID, xem §3.4 |
-| SRC-07 | Danh sách khoá ngắn hạn | Excel / LMS | Phụ trách NH | | | | Có |
-| SRC-08 | Học sinh đang học | SIS | Học vụ | | | | Chỉ trường tối thiểu (tái ghi danh) |
+| SRC-07 | Danh sách khoá ngắn hạn & sự kiện có phí (người mua, thanh toán) | Excel / LMS / form | Phụ trách NH, phụ trách sự kiện | | | | Có |
+| SRC-08 | Học sinh đang học + sĩ số theo khối/lớp | SIS | Học vụ | | | | Trường tối thiểu (tái ghi danh, lên cấp, bảng Sức chứa) |
 | SRC-09 | Thanh toán giữ chỗ/học phí | Phần mềm kế toán | Kế toán | | | | Chỉ trạng thái |
-| SRC-10 | Danh bạ trường THCS nguồn | Excel | Phòng TS | | | | Có (dữ liệu tham chiếu) |
-| SRC-11 | Zalo cá nhân / điện thoại TVV | Không có cấu trúc | Từng TVV | Không xác định | | 1 | **Không** chuyển tự động — xem §5 |
+| SRC-10 | Danh mục trường nguồn (tiểu học, THCS, THPT) | Excel | Phòng TS | | | | Có (dữ liệu tham chiếu) |
+| SRC-11 | Tài khoản nhắn tin cá nhân / điện thoại TVV | Không có cấu trúc | Từng TVV | Không xác định | | 1 | **Không** chuyển tự động — xem §5 |
 
 ## 2. Bộ trường dữ liệu tối thiểu (Minimum Viable Data)
 
@@ -36,7 +34,7 @@ Nguyên tắc **dữ liệu tối thiểu** (`BR-07`): chỉ thu thập trườn
 | Số điện thoại chính | ✔ | Liên hệ, **khoá khử trùng lặp** | Chuẩn hoá về dạng `+84…` / `0…` thống nhất |
 | Email | | Gửi tài liệu, xác nhận | |
 | Quan hệ với học sinh | ✔ | Bố / Mẹ / Người giám hộ / Khác | Cần cho consent trẻ em |
-| Zalo ID (qua Zalo OA) | | Gửi tin OA/ZNS | Chỉ khi người dùng đã tương tác/quan tâm OA |
+| Định danh trên kênh nhắn tin chính thức | | Gửi tin qua kênh đó | Chỉ khi người dùng đã tương tác/đồng ý theo quy định của nền tảng; kênh nào lấy từ D-07/D-09 |
 | Kênh ưu tiên & khung giờ | | Tôn trọng trải nghiệm | |
 | Quận/huyện | | Phân vùng, xe đưa đón | Không cần địa chỉ chi tiết ở giai đoạn lead |
 | Trạng thái đồng ý (consent) | ✔ | Hợp pháp hoá xử lý | Xem §4 |
@@ -45,10 +43,10 @@ Nguyên tắc **dữ liệu tối thiểu** (`BR-07`): chỉ thu thập trườn
 | Trường | Bắt buộc | Mục đích | Ghi chú |
 |---|---|---|---|
 | Họ tên | ✔ | Hồ sơ tuyển sinh | |
-| Năm sinh | ✔ | Xác định lớp/năm học; xác định quy tắc consent trẻ em | Ngày sinh đầy đủ chỉ cần ở stage DH-4 trở đi |
-| Lớp hiện tại | ✔ | Xác định dòng sản phẩm phù hợp | |
-| Trường đang học (THCS nguồn) | ✔ | Phân tích feeder, sự kiện tại trường | Chọn từ danh mục SRC-10, không nhập tự do |
-| Năm học dự kiến nhập học | ✔ (LN-DH) | Pipeline đúng đợt | |
+| Năm sinh | ✔ | Kiểm tra khối phù hợp; xác định quy tắc consent trẻ em | Ngày sinh đầy đủ chỉ cần ở stage DH-4 trở đi |
+| Khối hiện tại | ✔ | Xác định khối nhập học, dòng sản phẩm phù hợp | Tự tăng mỗi năm học (AU-15) |
+| Trường đang học (trường nguồn) | ✔ | Phân tích feeder, sự kiện tại trường | Chọn từ danh mục SRC-10 (tiểu học/THCS/THPT), không nhập tự do |
+| Khối nhập học + năm học dự kiến | ✔ (LN-DH) | Pipeline đúng khối, đúng đợt | Chuyển trường giữa năm: thêm ngày nhập học dự kiến |
 | SĐT / email riêng của học sinh | ✗ | — | **Không thu thập mặc định.** Chỉ khi có lý do cụ thể + đồng ý của phụ huynh |
 | Kết quả kiểm tra đầu vào, học bạ | Từ DH-4 | Xét tuyển, học bổng | Dữ liệu nhạy cảm hơn — phân quyền hạn chế (§4.3) |
 | Thông tin sức khoẻ, hoàn cảnh gia đình | ✗ trong CRM | — | Thuộc SIS sau nhập học, không lưu ở CRM tuyển sinh |
@@ -57,20 +55,21 @@ Nguyên tắc **dữ liệu tối thiểu** (`BR-07`): chỉ thu thập trườn
 - **Household:** tên hộ (tự sinh), danh sách thành viên, tổng số hồ sơ, giá trị trọn đời.
 - **Hồ sơ tuyển sinh (Opportunity):** chương trình, năm học, stage, tư vấn viên, nguồn đầu tiên, nguồn chốt, đề xuất học bổng, trạng thái phê duyệt, lý do thua.
 - **Chương trình/Khoá (Product):** mã, tên, dòng (`LN-DH`/`LN-NH`), học phí niêm yết, sĩ số tối đa, ngày khai giảng.
-- **Sự kiện (Campaign):** xem doc 12 §3.
+- **Sự kiện:** sản phẩm sự kiện + đăng ký `LN-SK` + Campaign, xem doc 02 §4.3 và doc 10 §2.
+- **Sức chứa:** năm học × khối × lớp, xem doc 10 §2.
 
 ## 3. Quy tắc làm sạch & khử trùng lặp
 
 ### 3.1 Chuẩn hoá
 - SĐT: bỏ khoảng trắng/dấu chấm; đổi đầu số cũ 11 số sang 10 số; loại số không đủ độ dài → hàng đợi "cần xác minh".
 - Họ tên: Title Case tiếng Việt, giữ dấu; tách họ/tên nếu nền tảng yêu cầu.
-- Trường THCS: ánh xạ biến thể ("THCS Ng. Du", "Nguyễn Du Q1") về một mã trong danh mục.
+- Trường nguồn: ánh xạ các cách viết khác nhau ("THCS Ng. Du", "Nguyễn Du Q1") về một mã trong danh mục.
 - Ngày tháng: `YYYY-MM-DD`.
 
 ### 3.2 Khoá trùng lặp (theo thứ tự)
 1. Cùng SĐT phụ huynh (đã chuẩn hoá) → **cùng Household**.
 2. Cùng email phụ huynh → ứng viên trùng, cần người xác nhận.
-3. Cùng họ tên học sinh + năm sinh + trường THCS → ứng viên trùng học sinh.
+3. Cùng họ tên học sinh + năm sinh + trường đang học → ứng viên trùng học sinh.
 
 Khi gộp: giữ **nguồn đầu tiên** (first touch) và **toàn bộ lịch sử tương tác**; tư vấn viên giữ hồ sơ là người có tương tác gần nhất trừ khi Trưởng TS chỉ định khác (D-05).
 
@@ -80,17 +79,18 @@ Khi gộp: giữ **nguồn đầu tiên** (first touch) và **toàn bộ lịch 
 | % bản ghi có SĐT hợp lệ | ≥ [ĐIỀN]% |
 | % trùng lặp còn lại sau làm sạch | ≤ [ĐIỀN]% |
 | % lead có nguồn (source) | ≥ [ĐIỀN]% (dữ liệu cũ thiếu nguồn → gán "Không rõ – dữ liệu cũ", không đoán) |
-| % hồ sơ có trường THCS từ danh mục | ≥ [ĐIỀN]% |
+| % hồ sơ có trường nguồn từ danh mục | ≥ [ĐIỀN]% |
 
-### 3.4 Lưu ý theo kênh Việt Nam
+### 3.4 Lưu ý theo kênh (áp cho các kênh trường **thực sự dùng** sau khám phá doc 12 §1)
+Với mỗi kênh trong taxonomy, ghi: quy định nền tảng về gửi tin, loại tin được phép, cách thu consent, giới hạn tích hợp. Ví dụ thường gặp ở Việt Nam:
 - **Zalo:** CRM chỉ nhắn được qua Zalo OA/ZNS theo chính sách của Zalo; hội thoại trên Zalo cá nhân **không** đồng bộ được hợp lệ. ZNS là tin giao dịch/chăm sóc theo mẫu được duyệt — không dùng cho quảng cáo.
 - **SMS brandname:** tách brandname CSKH và quảng cáo; tin quảng cáo tuân thủ khung giờ và quy định chống tin rác hiện hành.
 - **Meta Lead Ads:** form phải có liên kết chính sách quyền riêng tư của trường và câu hỏi/mô tả đồng ý.
 
 ## 4. Tuân thủ dữ liệu cá nhân (áp `P-05`, `BR-07`)
 
-### 4.1 Dữ liệu trẻ em — điểm đặc thù của trường THPT
-Học sinh lớp 9–12 phần lớn **dưới 18 tuổi**; theo NĐ 13/2023 (Điều 20), xử lý dữ liệu cá nhân của trẻ em cần sự đồng ý của cha mẹ/người giám hộ, và với trẻ từ đủ 7 tuổi cần cả sự đồng ý của trẻ. Đội dự án **phải** để pháp chế xác nhận cách áp dụng theo Luật BVDLCN 2025 và văn bản hướng dẫn. Hàm ý thiết kế:
+### 4.1 Dữ liệu trẻ em — điểm đặc thù của trường phổ thông
+Học sinh từ lớp 5 (lead lớp 6) đến lớp 12, tức khoảng **10–17 tuổi**, **đều là trẻ em dưới 18 tuổi**. Học sinh tiểu học dự sự kiện còn nhỏ tuổi hơn; theo NĐ 13/2023 (Điều 20), xử lý dữ liệu cá nhân của trẻ em cần sự đồng ý của cha mẹ/người giám hộ, và với trẻ từ đủ 7 tuổi cần cả sự đồng ý của trẻ. Đội dự án **phải** để pháp chế xác nhận cách áp dụng theo Luật BVDLCN 2025 và văn bản hướng dẫn. Hàm ý thiết kế:
 
 - Mặc định: phụ huynh là chủ thể liên lạc; **không** gửi marketing trực tiếp đến học sinh.
 - Form do học sinh tự điền (ví dụ đăng ký thi thử): yêu cầu thông tin phụ huynh + cơ chế xác nhận của phụ huynh trước khi đưa vào chuỗi nurture.
@@ -100,7 +100,7 @@ Học sinh lớp 9–12 phần lớn **dưới 18 tuổi**; theo NĐ 13/2023 (Đ
 | Trường consent | Giá trị | Ghi nhận |
 |---|---|---|
 | Đồng ý xử lý để tư vấn tuyển sinh | Có / Không / Rút lại | Thời điểm, kênh, phiên bản văn bản thông báo |
-| Đồng ý nhận tin marketing | Theo kênh: Zalo / SMS / Email / Gọi điện | Như trên |
+| Đồng ý nhận tin marketing | Theo **từng kênh trong taxonomy** (danh sách kênh lấy từ D-09) | Như trên |
 | Đồng ý của phụ huynh cho dữ liệu học sinh | Có / Chưa | Người đồng ý, thời điểm |
 | Đồng ý dùng hình ảnh | Có / Không | Theo sự kiện |
 
@@ -126,17 +126,17 @@ Quy tắc: **rút lại** phải dừng mọi automation marketing trong ≤ [Đ
 
 ### 4.5 Việc cần làm trước go-live
 - [ ] Văn bản thông báo xử lý dữ liệu cá nhân (privacy notice) cập nhật, đăng trên website, link trong mọi form
-- [ ] Mẫu câu consent cho form web, Lead Ads, form sự kiện, kịch bản gọi điện (doc 11)
+- [ ] Mẫu câu consent cho **mọi điểm vào** trong bảng kiểm kê (form web, form quảng cáo, form sự kiện, kịch bản gọi điện, form nhập tay…) (doc 11, doc 12)
 - [ ] Đánh giá tác động xử lý dữ liệu cá nhân (hồ sơ DPIA theo quy định) — pháp chế xác nhận nghĩa vụ và thời điểm nộp
 - [ ] Nếu CRM lưu trữ ngoài Việt Nam: pháp chế xác nhận nghĩa vụ liên quan chuyển dữ liệu ra nước ngoài
 - [ ] Quy trình xử lý yêu cầu của chủ thể dữ liệu (xem, sửa, xoá, rút đồng ý) — ai nhận, SLA
 - [ ] Quy trình thông báo khi có sự cố lộ lọt dữ liệu
 
-## 5. Xử lý "dữ liệu tối" trên Zalo cá nhân (SRC-11)
+## 5. Xử lý "dữ liệu tối" trên tài khoản nhắn tin cá nhân (SRC-11)
 
 Không thể và không nên "chuyển đổi" hội thoại cá nhân. Kế hoạch đề xuất:
 1. **Trước go-live:** mỗi tư vấn viên tự nhập danh sách phụ huynh đang theo dõi tích cực (mẫu Excel rút gọn: SĐT, tên, học sinh, stage, ghi chú gần nhất) — có buổi hướng dẫn và hạn chót.
-2. **Từ go-live:** mọi trao đổi mới ghi vào CRM; chuyển dần phụ huynh sang Zalo OA của trường (mời quan tâm OA trong cuộc gọi).
+2. **Từ go-live:** mọi trao đổi mới ghi vào CRM; chuyển dần phụ huynh sang kênh nhắn tin chính thức của trường (D-07).
 3. **Sau 60 ngày:** đo OBJ-4 (doc 03).
 4. Chính sách ghi nhận công (doc 11 §6) phải công bố **trước bước 1** — nếu không, tư vấn viên sẽ không nhập.
 

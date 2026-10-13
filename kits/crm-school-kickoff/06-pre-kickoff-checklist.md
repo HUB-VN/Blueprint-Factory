@@ -18,18 +18,20 @@ Quy tắc gate: mọi mục **[Bắt buộc]** phải xanh. Mục **[Nên có]**
 ## T-4 → T-2 tuần: Discovery & chuẩn bị nội dung
 
 - [ ] **[Bắt buộc]** Hoàn thành ≥ 5/7 buổi discovery, bao gồm S1 (Sponsor), S2 (Trưởng TS), S3 (tư vấn viên)
-- [ ] **[Bắt buộc]** Lịch mùa vụ (doc 02 §1) đã xác nhận với Trưởng TS, **có ngày vùng cấm go-live**
+- [ ] **[Bắt buộc]** Lịch mùa vụ (doc 02 §2) đã xác nhận với Trưởng TS, **có ngày vùng cấm go-live**
 - [ ] **[Bắt buộc]** Draft Project Charter (doc 03) đã gửi Sponsor
 - [ ] [Bắt buộc] Kiểm kê nguồn dữ liệu (doc 05 §1) có ≥ 80% dòng được điền
 - [ ] [Nên có] Phỏng vấn 3–5 phụ huynh (doc 01 §10)
-- [ ] [Nên có] Đã nhận file mẫu dữ liệu từ SRC-01, SRC-03, SRC-05
+- [ ] [Nên có] Đã nhận file mẫu dữ liệu từ SRC-01, SRC-05 và các điểm vào lead lớn nhất
+- [ ] [Nên có] Đã gửi trường danh sách bằng chứng kênh cần chuẩn bị cho workshop khám phá Marketing (doc 12 §1.1 bước K2)
+- [ ] [Nên có] Có danh sách khối/lớp và sĩ số hiện tại (cho bảng Sức chứa)
 - [ ] [Nên có] Đầu mối pháp chế/tuân thủ của trường được xác định (doc 05)
 
 ## T-2 → T-1 tuần: Đồng thuận trước
 
 - [ ] **[Bắt buộc]** Tổng hợp discovery (doc 01 §11) đã gửi Sponsor ≥ 5 ngày làm việc trước kickoff
 - [ ] **[Bắt buộc]** RACI (doc 04 §3) đã được Project Owner xem
-- [ ] **[Bắt buộc]** Danh sách quyết định cần chốt tại kickoff (D-01..D-08, doc 07 §3) đã gửi kèm phương án đề xuất — **không ai được "nghe lần đầu" ở kickoff**
+- [ ] **[Bắt buộc]** Danh sách quyết định cần chốt tại kickoff (D-01..D-08, doc 07 §3) đã gửi kèm phương án đề xuất; với D-09 chỉ gửi kế hoạch khám phá (doc 12 §1.1) — **không ai được "nghe lần đầu" ở kickoff**
 - [ ] [Bắt buộc] Key user từng bộ phận đã được chỉ định, có cam kết thời gian
 - [ ] [Bắt buộc] Admin CRM phía trường (người sẽ vận hành sau hypercare) đã được chỉ định — nếu chưa: ghi RAID mức Cao
 - [ ] [Nên có] Pre-meeting 30 phút riêng với Trưởng TS và Trưởng Marketing về D-02 (định nghĩa lead đủ điều kiện)

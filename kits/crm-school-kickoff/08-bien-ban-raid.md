@@ -36,7 +36,8 @@ Thành phần: [danh sách]   Vắng: [danh sách]
 | D-06 | | Ngưỡng phê duyệt học bổng … | | | | doc 10 §5 (`P-08`) | |
 | D-07 | | Kênh liên lạc chính thức … | | | | doc 11 §5 | |
 | D-08 | | SLA … | | | | doc 10 §4, doc 11 §2 | |
-| D-09+ | | *(quyết định phát sinh trong dự án)* | | | | | |
+| D-09 | | Taxonomy nguồn, cấu trúc chiến dịch, UTM, điểm vào giai đoạn 1 (kết quả khám phá doc 12 §1) | | | Trưởng Marketing + Trưởng TS | doc 10 §6.2, doc 12 §2–§3 | Hằng tháng (K7) |
+| D-10+ | | *(quyết định phát sinh trong dự án)* | | | | | |
 
 **Quy tắc:** quyết định thay đổi → **không sửa dòng cũ**; thêm dòng mới "D-xx thay thế D-yy" (giống quy tắc ID không tái sử dụng của BP-01).
 
@@ -54,10 +55,12 @@ Thang: Khả năng (K) và Tác động (T) 1–3; Mức = K × T (≥ 6 = Cao).
 | RK-04 | Dữ liệu cũ chất lượng thấp, trùng lặp nhiều | 3 | 2 | 6 | Ngưỡng chất lượng (doc 05 §3.3); không chuyển dữ liệu quá [ĐIỀN] năm | Data lead | |
 | RK-05 | Marketing & Tuyển sinh không thống nhất định nghĩa lead | 2 | 2 | 4 | D-02 + xem lại sau 30 ngày bằng dữ liệu | PM | |
 | RK-06 | Không tuân thủ quy định dữ liệu trẻ em / consent | 2 | 3 | 6 | doc 05 §4; pháp chế duyệt trước `KG-2` | Đầu mối pháp chế | |
-| RK-07 | Zalo OA chưa xác thực / mẫu ZNS chưa được duyệt kịp | 2 | 2 | 4 | Nộp hồ sơ OA & mẫu ZNS ngay Sprint 1; phương án dự phòng SMS/email | Marketing | |
+| RK-07 | Tài khoản kênh chính thức (nhắn tin doanh nghiệp, brandname…) chưa xác thực hoặc mẫu tin chưa được duyệt kịp | 2 | 2 | 4 | Nộp hồ sơ ngay sau D-09; có kênh dự phòng | Marketing | |
 | RK-08 | Tích hợp với SIS / kế toán không có API | 2 | 2 | 4 | Phương án nhập/xuất file định kỳ ở giai đoạn 1 | IT trường | |
 | RK-09 | Key user không có thời gian (đang mùa sự kiện) | 2 | 2 | 4 | Lịch key user cố định trong tuần, Project Owner bảo vệ thời gian | Project Owner | |
 | RK-10 | Yêu cầu phình to (scope creep) từ nhiều bộ phận | 3 | 2 | 6 | Quy trình CR (doc 03 §9); danh sách giai đoạn 2 công khai | PM | |
+| RK-12 | Khám phá kênh phát hiện nhiều điểm vào hơn dự kiến → phình phạm vi tích hợp | 3 | 2 | 6 | Giới hạn số điểm vào giai đoạn 1 trong charter; điểm vào còn lại dùng mẫu C/D (doc 10 §6.2) | PM | |
+| RK-13 | Không có dữ liệu sức chứa theo khối/lớp đáng tin → nhận chuyển trường sai | 2 | 3 | 6 | Bảng Sức chứa có chủ sở hữu rõ, đồng bộ từ SIS (IN-08) | Project Owner | |
 | RK-11 | Nhân sự tư vấn biến động (thời vụ, cộng tác viên mùa cao điểm) | 2 | 2 | 4 | Tài liệu đào tạo tự học + license cho nhân sự thời vụ (D-xx) | Project Owner | |
 
 ### 3.2 Giả định (Assumptions)
@@ -75,9 +78,9 @@ Thang: Khả năng (K) và Tác động (T) 1–3; Mức = K × T (≥ 6 = Cao).
 ### 3.4 Phụ thuộc (Dependencies)
 | ID | Phụ thuộc | Bên cung cấp | Cần trước | Trạng thái |
 |---|---|---|---|---|
-| DP-01 | Zalo OA đã xác thực + mẫu ZNS được duyệt | Marketing / Zalo | Sprint 3 | |
-| DP-02 | SMS brandname đăng ký | Marketing / nhà mạng | Sprint 3 | |
-| DP-03 | Quyền truy cập Meta Business Manager | Marketing / agency | Sprint 2 | |
+| DP-01 | Tài khoản kênh nhắn tin chính thức đã xác thực + mẫu tin được duyệt (theo D-07/D-09) | Marketing / nền tảng | Sprint 3 | |
+| DP-02 | Bằng chứng kênh cho khám phá (doc 12 §1.1 bước K2) | Marketing trường | Kickoff + 5 ngày | |
+| DP-03 | Quyền truy cập quản trị các nền tảng quảng cáo/kênh được chọn ở D-09 | Marketing / agency | Sprint 2 | |
 | DP-04 | SPF/DKIM/DMARC cho tên miền gửi email | IT trường | Sprint 2 | |
 | DP-05 | API / file xuất từ SIS và phần mềm kế toán | IT trường / nhà cung cấp | Sprint 2 | |
 | DP-06 | Văn bản privacy notice + mẫu consent được duyệt | Pháp chế | Trước UAT | |

@@ -11,7 +11,8 @@
 - [ ] `KG-2` đã đạt; mọi Critical đã đóng
 - [ ] Thông báo cho toàn trường: ngày go-live, thay đổi gì, hỏi ai
 - [ ] Đào tạo xong; tài khoản người dùng đã tạo, đăng nhập thử thành công 100%
-- [ ] Mẫu ZNS, SMS brandname, tên miền email đã hoạt động (DP-01, DP-02, DP-04)
+- [ ] Các kênh gửi tin chính thức (theo D-07/D-09) và tên miền email đã hoạt động (DP-01, DP-04)
+- [ ] Bảng Sức chứa theo khối/lớp đã cập nhật số thật
 - [ ] Kế hoạch rollback đã viết (xem §1.1)
 
 **T-1 ngày (đóng băng nguồn cũ)**
@@ -21,7 +22,7 @@
 
 **Ngày D**
 - [ ] Nạp dữ liệu chính thức (delta) → đối soát số bản ghi và tổng theo stage (Project Owner ký)
-- [ ] Chuyển form web, Meta Lead Ads, Zalo OA, tổng đài sang CRM production
+- [ ] Chuyển **từng điểm vào giai đoạn 1** (danh sách D-09) và tổng đài sang CRM production, theo danh sách kiểm có người ký từng dòng
 - [ ] Gửi lead thử từ **mỗi** kênh → xác nhận vào đúng, gán đúng (smoke test)
 - [ ] Bật các quy tắc tự động AU-01..AU-14 theo thứ tự: thu & gán trước, nurture sau cùng
 - [ ] Đội triển khai có mặt tại phòng tuyển sinh (hoặc trực online) cả ngày
@@ -61,9 +62,10 @@ Hành động: chuyển form/kênh lỗi về đích cũ (email/Sheet) — **kh�
 | Nhịp | Việc | Người |
 |---|---|---|
 | Hằng ngày | Kiểm tra lỗi tích hợp & hàng đợi thử lại (`HF-1`, `HF-3`); lead chưa gán; task quá hạn toàn đội | Admin CRM |
-| Hằng tuần | Họp đội tuyển sinh trên dashboard; họp Marketing–Tuyển sinh 2 tuần/lần (doc 12 §5); rà hồ sơ kẹt stage (`HF-2`) | Trưởng TS, Trưởng Marketing |
+| Hằng tuần | Họp đội tuyển sinh trên dashboard; họp Marketing–Tuyển sinh 2 tuần/lần (doc 12 §6); rà hồ sơ kẹt stage (`HF-2`) | Trưởng TS, Trưởng Marketing |
 | Hằng tháng | Rà người dùng/phân quyền; dữ liệu trùng; consent bị rút đã xử lý; picklist nguồn mới | Admin CRM |
-| Mỗi đợt tuyển sinh | Tạo Campaign cha/con; cập nhật học phí/ưu đãi niêm yết; cập nhật ngày công bố điểm (AU-11) | Marketing + Admin |
+| Mỗi đợt tuyển sinh | Tạo Campaign theo cấu trúc 3 cấp; cập nhật học phí/ưu đãi niêm yết theo khối; cập nhật ngày công bố kết quả các kỳ tuyển sinh (AU-11); cập nhật Sức chứa | Marketing + Admin + Trưởng TS |
+| Mỗi quý | Rà taxonomy nguồn: kênh mới, kênh không còn dùng (khám phá lặp lại, doc 12 §1.1 K7) | Marketing + Admin |
 | Hằng năm (sau mùa) | Hiệu chỉnh xác suất stage & trọng số chấm điểm bằng dữ liệu thật; chạy chính sách lưu trữ `P-07`; review lý do thua | PO + Marketing + Admin |
 
 ## 4. Định nghĩa KPI (dùng thống nhất cho mọi dashboard)
@@ -75,11 +77,17 @@ Hành động: chuyển form/kênh lỗi về đích cũ (email/Sheet) — **kh�
 | Tỷ lệ đủ điều kiện | Lead đạt `G-1` / lead mới (theo nguồn) | Lead | Hằng tuần | Marketing |
 | Tỷ lệ chuyển stage | Hồ sơ vào stage n+1 / hồ sơ vào stage n (theo cohort tháng tạo) | Opportunity | Hằng tháng | Trưởng TS |
 | Tỷ lệ chuyển đổi tổng | Hồ sơ DH-6 / lead đủ điều kiện (theo cohort) | Opportunity | Theo đợt | Sponsor |
-| Tỷ lệ tham dự sự kiện | Check-in / đăng ký | Campaign Member | Mỗi sự kiện | Marketing |
+| Tỷ lệ tham dự sự kiện | Check-in / đăng ký | Opp `LN-SK` | Mỗi sự kiện | Marketing |
 | % follow-up sự kiện ≤ 24h | Người tham dự có activity ≤ 24h / người tham dự | Activity | Mỗi sự kiện | Trưởng TS |
 | Chi phí / nhập học theo kênh | Chi phí kênh / số DH-7 có nguồn [đầu tiên hoặc chốt] = kênh | Campaign + Opp | Theo đợt | Marketing |
-| Tỷ lệ chuyển hoá `LN-NH` → `LN-DH` | HS ngoài trường hoàn thành `LN-NH` có hồ sơ `LN-DH` DH-6 / tổng HS ngoài trường lớp 8–9 hoàn thành | Opp | Hằng năm | PO |
-| **Tỷ lệ nhập học có điểm chạm trước** | DH-7 năm nay từng dự ≥ 1 sự kiện hoặc học ≥ 1 khoá `LN-NH` / tổng DH-7 | Opp + Campaign Member | Hằng năm | Sponsor |
+| Tỷ lệ chuyển hoá `LN-NH`/`LN-SK` → `LN-DH` | HS ngoài trường hoàn thành `LN-NH` hoặc tham dự `LN-SK` có hồ sơ `LN-DH` DH-6 / tổng HS ngoài trường đủ điều kiện (đang ở khối trước một khối trường tuyển), **theo khối** | Opp | Hằng năm | PO |
+| Doanh thu & lãi gộp `LN-SK` | Doanh thu sau hoàn/huỷ − chi phí trực tiếp − chi phí marketing, theo sự kiện và theo nhóm SK-A..D | Opp `LN-SK` + Campaign | Mỗi sự kiện / quý | Phụ trách sự kiện |
+| Lấp đầy sự kiện | Đã tham dự / sức chứa | Opp `LN-SK` | Mỗi sự kiện | Phụ trách sự kiện |
+| Chỗ trống theo khối | Sức chứa − đang học − đã giữ chỗ, theo năm học × khối | Bảng Sức chứa | Hằng tuần trong mùa | Trưởng TS |
+| Thời gian xử lý chuyển trường | Trung vị (DH-6 − DH-1) cho loại Chuyển trường | Opp | Hằng tháng | Trưởng TS |
+| Tỷ lệ giữ chân / lên cấp nội bộ | Học sinh học tiếp năm sau / học sinh đủ điều kiện, theo khối; riêng lớp 9 → 10 nếu liên cấp | Opp tái ghi danh | Hằng năm | Sponsor |
+| % lead nguồn "Khác – cần phân loại" | Lead nguồn chưa phân loại / tổng lead | Lead | Hằng tháng | Admin + Marketing |
+| **Tỷ lệ nhập học có điểm chạm trước** | DH-7 năm nay từng dự ≥ 1 sự kiện hoặc học ≥ 1 khoá `LN-NH` / tổng DH-7, **theo khối** | Opp + Campaign Member | Hằng năm | Sponsor |
 | Lấp đầy lớp `LN-NH` | Đã thanh toán / sĩ số tối đa | Product | Mỗi khoá | Phụ trách NH |
 | Adoption | TVV có ≥ 1 activity ghi nhận/ngày làm việc / tổng TVV | Activity | Hằng ngày (hypercare), hằng tuần sau đó | Admin |
 | Chất lượng dữ liệu | % hồ sơ có việc tiếp theo; % DH-X có lý do; % lead có nguồn | Opp / Lead | Hằng tuần | Admin |
@@ -89,8 +97,11 @@ Hành động: chuyển form/kênh lỗi về đích cũ (email/Sheet) — **kh�
 **Bắt buộc**
 - [ ] Tạo/khoá người dùng, gán vai trò & phân quyền theo doc 05 §4.3
 - [ ] Chuyển hàng loạt hồ sơ giữa TVV
-- [ ] Thêm giá trị picklist (nguồn, lý do thua, trường THCS) theo quy trình
-- [ ] Tạo Campaign mới theo quy ước đặt tên (doc 12 §1) và form đăng ký sự kiện
+- [ ] Thêm giá trị picklist (nguồn theo taxonomy, lý do thua, trường nguồn) theo quy trình; rà nguồn "Khác – cần phân loại" hằng tháng
+- [ ] Cập nhật bảng Sức chứa theo khối/lớp; xử lý danh sách chờ
+- [ ] Tạo sản phẩm sự kiện (sức chứa, loại vé, giá, chính sách hoàn/huỷ)
+- [ ] Tạo Campaign mới theo cấu trúc 3 cấp và quy ước đặt tên (doc 12 §3) và form đăng ký sự kiện
+- [ ] Thêm điểm vào lead mới bằng mẫu C/D (doc 10 §6.2) mà không cần đơn vị triển khai
 - [ ] Đọc nhật ký lỗi tích hợp, chạy thử lại, biết khi nào gọi nhà cung cấp
 - [ ] Xử lý yêu cầu chủ thể dữ liệu: xuất, sửa, xoá/ẩn danh, rút consent
 - [ ] Sửa báo cáo/dashboard đơn giản (bộ lọc, khoảng thời gian)

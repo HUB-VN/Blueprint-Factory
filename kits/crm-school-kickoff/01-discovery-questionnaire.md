@@ -30,9 +30,9 @@
 ## 2. Ban giám hiệu / Sponsor
 
 **Chiến lược & mục tiêu**
-1. Chỉ tiêu tuyển sinh lớp 10 năm học tới là bao nhiêu? Năm nay đạt bao nhiêu % chỉ tiêu? [ĐIỀN]
-2. Tỷ trọng doanh thu: khoá dài hạn / khoá ngắn hạn / khác? Kỳ vọng 3 năm tới thay đổi thế nào?
-3. Ba lý do lớn nhất khiến trường *mất* học sinh vào tay đối thủ? Đối thủ chính là ai (trường tư khác, công lập chất lượng cao, quốc tế)?
+1. Trường có những cấp nào (THCS, THPT, liên cấp)? Chỉ tiêu tuyển sinh năm học tới **theo từng khối 6–12** và theo loại (đầu cấp, chuyển trường, lên cấp nội bộ) là bao nhiêu? Năm nay đạt bao nhiêu %? [ĐIỀN theo bảng khối × loại]
+2. Tỷ trọng doanh thu: chương trình dài hạn / khoá ngắn hạn / sự kiện & chương trình đào tạo có phí / khác? Kỳ vọng 3 năm tới thay đổi thế nào?
+3. Ba lý do lớn nhất khiến trường *mất* học sinh vào tay đối thủ? Đối thủ chính là ai, **có khác nhau theo cấp không** (trường tư khác, công lập chất lượng cao, quốc tế)?
 4. Nếu sau 12 tháng dự án CRM được coi là thành công, anh/chị sẽ nhìn thấy điều gì? (Ép về 3 chỉ số.)
 5. Anh/chị cần xem báo cáo nào, tần suất nào, trên thiết bị nào?
 
@@ -49,19 +49,20 @@
 
 **Quy trình hiện tại** (vẽ cùng người được phỏng vấn trên bảng trắng)
 1. Một lead đi từ "lần đầu biết đến trường" đến "nộp tiền giữ chỗ" qua những bước nào? Bước nào hay tắc nhất?
-2. Lead được chia cho tư vấn viên thế nào? Theo khu vực, trường THCS nguồn, xoay vòng, hay ai nghe máy trước được?
-3. Có bài kiểm tra đầu vào / phỏng vấn / xét học bạ không? Ai chấm, kết quả lưu ở đâu?
+2. Lead được chia cho tư vấn viên thế nào? Theo cấp/khối, khu vực, trường nguồn, xoay vòng, hay ai nghe máy trước? Có TVV chuyên cho THCS và THPT không?
+3. Kiểm tra đầu vào / phỏng vấn / xét học bạ **khác nhau thế nào giữa các khối và giữa đầu cấp và chuyển trường**? Ai chấm, kết quả lưu ở đâu?
 4. Có các đợt tuyển sinh (sớm / chính thức / bổ sung) không? Điều kiện và ưu đãi mỗi đợt khác nhau thế nào?
-5. Phụ huynh "chờ kết quả thi công lập rồi mới quyết" chiếm khoảng bao nhiêu %? Trường xử lý nhóm này thế nào? (Thường tạo đỉnh tuyển sinh thứ hai sau khi có điểm thi vào 10.)
+5. Phụ huynh "chờ kết quả tuyển sinh trường khác rồi mới quyết" chiếm khoảng bao nhiêu % **ở lớp 6 và ở lớp 10**? Ngày công bố kết quả các kỳ đó ở địa phương? Trường xử lý nhóm này thế nào? (Thường tạo đỉnh tuyển sinh thứ hai.)
 6. Giữ chỗ / đặt cọc: bao nhiêu tiền, có hoàn không, điều kiện hoàn? [ĐIỀN]
-7. Tái ghi danh học sinh hiện hữu (lớp 10 → 11 → 12) có quy trình riêng không? Tỷ lệ rời trường mỗi năm?
-8. Chuyển trường giữa năm: bao nhiêu hồ sơ/năm, ai xử lý?
+7. Tái ghi danh học sinh đang học (mọi khối) và **lên cấp nội bộ lớp 9 → 10** (nếu liên cấp) có quy trình riêng không? Tỷ lệ rời trường mỗi năm theo khối?
+8. Chuyển trường: nhận ở những khối nào, thời điểm nào trong năm? Bao nhiêu hồ sơ/năm theo khối? Ai xử lý?
+9. Làm sao biết **khối/lớp nào còn bao nhiêu chỗ** cho năm nay và năm sau? Ai cập nhật, ở đâu? *(Điều kiện để nhận chuyển trường. Thường nằm trong đầu của Trưởng TS.)*
 
 **Đội ngũ & đo lường**
-9. Đội tư vấn bao nhiêu người, ca làm việc, có làm cuối tuần/tối không?
-10. Chỉ tiêu cá nhân được giao thế nào? Có thưởng theo số nhập học không? (Ảnh hưởng đến quy tắc gán lead và ghi nhận công — rất nhạy cảm.)
-11. Hiện đo hiệu suất tư vấn viên bằng gì? Ai tổng hợp, mất bao lâu?
-12. Lý do thua phổ biến nhất? Có đang ghi lại không?
+10. Đội tư vấn bao nhiêu người, ca làm việc, có làm cuối tuần/tối không?
+11. Chỉ tiêu cá nhân được giao thế nào? Có thưởng theo số nhập học không? (Ảnh hưởng đến quy tắc gán lead và ghi nhận công — rất nhạy cảm.)
+12. Hiện đo hiệu suất tư vấn viên bằng gì? Ai tổng hợp, mất bao lâu?
+13. Lý do thua phổ biến nhất? Có đang ghi lại không?
 
 ## 4. Tư vấn viên tuyển sinh — một ngày làm việc
 
@@ -76,55 +77,48 @@
 
 ## 5. Marketing — kênh & đo lường
 
-1. Liệt kê toàn bộ kênh tạo lead hiện có, ước lượng lead/tháng và chi phí/tháng từng kênh:
+> **Phần này ở dạng khám phá.** Không đưa danh sách kênh soạn sẵn cho trường "tích". Hãy để người được phỏng vấn **tự kể**, sau đó mới dùng danh sách gợi nhớ ở doc 12 §1.2 để hỏi xem còn sót kênh nào. Kết quả buổi này là bản kiểm kê **nháp**. Bản đầy đủ được hoàn thiện trong workshop khám phá (doc 12 §1, bước K3–K4).
 
-   | Kênh | Lead/tháng | Chi phí/tháng | Ai quản lý | Lead đi về đâu |
-   |---|---|---|---|---|
-   | Facebook / Meta Lead Ads | | | | |
-   | Fanpage inbox / Messenger | | | | |
-   | Zalo OA | | | | |
-   | TikTok | | | | |
-   | Google Ads / SEO website | | | | |
-   | Form website | | | | |
-   | Hotline / tổng đài | | | | |
-   | Walk-in (đến trực tiếp) | | | | |
-   | Giới thiệu từ phụ huynh hiện hữu | | | | |
-   | Trường THCS đối tác / giáo viên giới thiệu | | | | |
-   | Sự kiện (xem §6) | | | | |
-   | Khác: [ĐIỀN] | | | | |
+1. Kể lại 3 lead gần nhất anh/chị nhớ: phụ huynh biết đến trường qua đâu, rồi liên hệ bằng cách nào? *(Bắt đầu từ ví dụ thật, không bắt đầu từ danh sách kênh.)*
+   Ghi vào bảng nháp, mỗi dòng là một "điểm vào" theo đúng cách trường gọi tên:
 
+   | Điểm vào (tên trường dùng) | Trả phí / tự nhiên / quan hệ / sự kiện / khác | Lead/tháng (đếm hay ước) | Chi phí/tháng | Ai quản lý | Phục vụ cấp/khối, dòng sản phẩm nào | Lead đi về đâu |
+   |---|---|---|---|---|---|---|
+   | | | | | | | |
+
+   Hỏi thêm: còn điểm vào nào do **bộ phận khác** quản lý (Ban giám hiệu, giáo viên, phụ trách khoá ngắn hạn, agency) không?
 2. Hiện có biết **chi phí trên mỗi học sinh nhập học** theo kênh không? Nếu không, thiếu mắt xích nào?
-3. Có dùng UTM / mã nguồn không? Quy ước đặt tên chiến dịch thế nào?
+3. Có dùng UTM / mã nguồn không? Trường đang tổ chức chiến dịch theo chiều nào (theo năm, đợt, cấp, khối, sản phẩm)? Xin kế hoạch marketing năm và một báo cáo chiến dịch gần nhất.
+3b. Trong năm có những **kiểu chiến dịch** nào lặp lại? Kiểu nào mới thử năm nay? *(Ghi vào doc 12 §3.3.)*
 4. Lead từ quảng cáo bao lâu thì đến tay tư vấn viên? Có ai kiểm tra lead rác không?
-5. Gửi tin cho phụ huynh bằng gì? (Zalo ZNS, SMS brandname, email, nhóm Zalo lớp…) Có danh sách từ chối nhận tin không?
+5. Đang gửi tin cho phụ huynh bằng những kênh nào? Kênh nào là tài khoản chính thức của trường, kênh nào là tài khoản cá nhân? Có danh sách từ chối nhận tin không?
 6. Nội dung nuôi dưỡng (nurture) đang có: bài viết, video, brochure, học bổng, bảng học phí?
 7. Có phân khúc phụ huynh không (khu vực, thu nhập, mục tiêu du học, học lực con)?
 
 ## 6. Sự kiện
 
-1. Danh sách sự kiện trong năm, quy mô, mục đích:
+> Sự kiện và chương trình đào tạo được xem là **sản phẩm** (doc 02 §4.3): có sức chứa, giá vé (có thể 0đ), doanh thu, đồng thời tạo lead. Hỏi cả hai mặt.
 
-   | Sự kiện | Tháng | Số đăng ký | Số tham dự | Mục đích (lead mới / chốt / giữ chân) |
-   |---|---|---|---|---|
-   | Open Day / Ngày hội tuyển sinh | | | | |
-   | Hội thảo phụ huynh (định hướng, du học…) | | | | |
-   | Thi thử vào 10 | | | | |
-   | "Một ngày làm học sinh" / trải nghiệm | | | | |
-   | Tham quan trường (campus tour) cá nhân | | | | |
-   | Sự kiện tại trường THCS đối tác | | | | |
-   | Khác: [ĐIỀN] | | | | |
+1. Liệt kê **mọi** sự kiện / chương trình đào tạo trong năm, cả có phí lẫn miễn phí, cho học sinh trong và ngoài trường. Để người được phỏng vấn tự kể trước:
 
+   | Sự kiện / chương trình | Tháng | Có phí? Giá vé | Sức chứa | Đăng ký | Tham dự | Doanh thu | Đối tượng (khối, PH/HS, trong/ngoài trường) | Mục đích (doanh thu / lead / chốt / giữ chân) | Ai phụ trách |
+   |---|---|---|---|---|---|---|---|---|---|
+   | | | | | | | | | | |
+
+   Gợi nhớ nếu cần: Open Day, ngày hội tuyển sinh, tham quan trường, thi thử chuyển cấp, "một ngày làm học sinh", workshop, trại ngắn ngày, hội thảo chuyên đề, cuộc thi, dã ngoại, sự kiện tại trường nguồn.
+1b. Sự kiện có phí: bán vé và thu tiền thế nào? Chính sách hoàn/huỷ? Có giá ưu đãi cho học sinh trong trường hoặc anh chị em không?
+1c. Ai chịu chỉ tiêu doanh thu sự kiện, ai chịu chỉ tiêu lead từ sự kiện? *(Hai chỉ tiêu này hay "giẫm chân" nhau.)*
 2. Đăng ký sự kiện bằng gì (Google Form, form web, gọi điện)? Check-in thế nào?
 3. Tỷ lệ "đăng ký nhưng không đến" khoảng bao nhiêu? Có nhắc lịch không, bằng kênh gì, trước bao lâu?
 4. Sau sự kiện, bao lâu thì tư vấn viên liên hệ người tham dự? Ai chịu trách nhiệm?
 5. Có đo được bao nhiêu học sinh nhập học đến từ từng sự kiện không?
-6. Kết quả thi thử được trả cho phụ huynh thế nào? (Đây là "lý do chính đáng" để liên hệ lại — điểm chạm vàng.)
+6. Kết quả thi thử / đánh giá cuối chương trình được trả cho phụ huynh thế nào? (Đây là "lý do chính đáng" để liên hệ lại — điểm chạm vàng.)
 
 ## 7. Khoá ngắn hạn
 
 1. Danh mục khoá: tên, đối tượng (học sinh trong trường / ngoài trường), thời lượng, học phí, sĩ số tối đa. [ĐIỀN]
 2. Đăng ký và thanh toán thế nào? Có thanh toán online không?
-3. Học sinh **ngoài trường** học khoá ngắn hạn (ví dụ lớp 8–9 học trại hè) có được chuyển cho đội tuyển sinh lớp 10 không? *(Cơ hội cross-sell lớn nhất, thường bị bỏ sót.)*
+3. Học sinh **ngoài trường** học khoá ngắn hạn hoặc dự chương trình đào tạo (ví dụ học sinh tiểu học dự trại hè, học sinh THCS học luyện thi) có được chuyển cho đội tuyển sinh của khối phù hợp không? *(Cơ hội cross-sell lớn nhất, thường bị bỏ sót.)*
 4. Có danh sách chờ khi lớp đầy không? Có huỷ lớp khi không đủ sĩ số không, ai thông báo?
 5. Có khảo sát hài lòng cuối khoá không? Kết quả dùng vào đâu?
 
